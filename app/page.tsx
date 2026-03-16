@@ -16,11 +16,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-grid flex flex-col items-center justify-center px-4">
-      {/* Ambient glow */}
-      <div className="fixed top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+    <div className="min-h-screen bg-grid flex flex-col items-center justify-center px-4 relative">
+      {/* Animated gradient mesh */}
+      <div className="bg-mesh" />
 
-      <div className="animate-fade-up w-full max-w-[420px]">
+      <div className="animate-fade-up w-full max-w-[420px] relative z-10">
         {/* Logo mark */}
         <div className="flex items-center gap-3 mb-10">
           <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
@@ -29,7 +29,7 @@ export default function Home() {
             </svg>
           </div>
           <div>
-            <h1 className="text-[15px] font-semibold tracking-tight text-text-primary">Maton Sheets</h1>
+            <h1 className="text-[15px] font-semibold tracking-tight text-text-primary">Maton</h1>
             <p className="text-[11px] text-text-muted tracking-wide uppercase">API Gateway Demo</p>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function Home() {
               Get started
             </h2>
             <p className="text-[14px] text-text-secondary leading-relaxed mb-8">
-              Connect your Google Sheets account and read spreadsheet data through Maton&apos;s unified API gateway.
+              Connect to 100+ APIs through Maton&apos;s unified OAuth gateway. Sheets, Slack, Gmail, Notion, GitHub and more.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export default function Home() {
             </div>
             <button
               type="submit"
-              className="mt-4 w-full bg-accent text-surface font-semibold text-[14px] py-3 px-4 rounded-xl hover:brightness-110 active:scale-[0.98] transition-all duration-200"
+              className="mt-4 w-full bg-accent text-surface font-semibold text-[14px] py-3 px-4 rounded-xl btn-press hover:brightness-110 transition-all duration-200"
             >
               Continue
             </button>

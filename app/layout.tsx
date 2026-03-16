@@ -3,7 +3,10 @@ import NavBar from "@/components/nav-bar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Maton Demo",
+  title: {
+    default: "Maton",
+    template: "%s | Maton",
+  },
   description: "Multi-user, multi-app connection demo via Maton API gateway",
 };
 

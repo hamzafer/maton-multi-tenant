@@ -101,3 +101,53 @@ input:focus {
 .sheet-row:hover {
   background: var(--color-surface-hover);
 }
+
+/* Animated gradient mesh background */
+@keyframes meshFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -40px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(10px, 30px) scale(1.02); }
+}
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-mesh::before,
+.bg-mesh::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.07;
+}
+.bg-mesh::before {
+  width: 500px;
+  height: 500px;
+  background: #34d399;
+  top: -10%;
+  left: -5%;
+  animation: meshFloat 20s ease-in-out infinite;
+}
+.bg-mesh::after {
+  width: 400px;
+  height: 400px;
+  background: #06b6d4;
+  bottom: -10%;
+  right: -5%;
+  animation: meshFloat 25s ease-in-out infinite reverse;
+}
+
+/* Button press effect */
+.btn-press {
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+.btn-press:active {
+  transform: scale(0.97);
+}
+.btn-press:hover {
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.15);
+}
