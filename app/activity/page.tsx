@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import EmptyState from "@/components/empty-state";
 
 interface ActivityEntry {
   id: string;
@@ -107,9 +108,7 @@ export default function ActivityPage() {
               <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
             </div>
           ) : entries.length === 0 ? (
-            <div className="text-center py-16 text-text-muted text-[13px]">
-              No activity yet. Make some API calls from the dashboard.
-            </div>
+            <EmptyState variant="activity" />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-[13px]">

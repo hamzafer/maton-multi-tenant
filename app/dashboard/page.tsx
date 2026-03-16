@@ -10,6 +10,7 @@ import SlackSender from "@/components/slack-sender";
 import GmailViewer from "@/components/gmail-viewer";
 import NotionViewer from "@/components/notion-viewer";
 import GithubViewer from "@/components/github-viewer";
+import EmptyState from "@/components/empty-state";
 
 interface ConnectionState {
   connectionId: string;
@@ -148,8 +149,8 @@ function DashboardContent() {
     return (
       <div className="min-h-screen bg-grid flex items-center justify-center">
         <div className="text-center">
-          <p className="text-text-secondary mb-3">No email provided.</p>
-          <a href="/" className="text-accent text-sm hover:underline">Go back</a>
+          <EmptyState variant="email" />
+          <a href="/" className="text-accent text-sm hover:underline mt-2 inline-block">Go back</a>
         </div>
       </div>
     );

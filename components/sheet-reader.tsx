@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import EmptyState from "@/components/empty-state";
 
 export default function SheetReader({ email }: { email: string }) {
   const [spreadsheetId, setSpreadsheetId] = useState("");
@@ -91,7 +92,7 @@ export default function SheetReader({ email }: { email: string }) {
       )}
 
       {data && data.length === 0 && (
-        <p className="text-text-muted text-[13px]">No data found in this range.</p>
+        <EmptyState variant="data" />
       )}
     </div>
   );

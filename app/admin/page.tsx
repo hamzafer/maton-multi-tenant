@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { getAppConfig } from "@/lib/apps";
+import EmptyState from "@/components/empty-state";
 
 interface Connection {
   connection_id: string;
@@ -86,7 +87,7 @@ export default function AdminPage() {
               <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
             </div>
           ) : connections.length === 0 ? (
-            <div className="text-center py-16 text-text-muted text-[13px]">No connections found.</div>
+            <EmptyState variant="connections" />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-[13px]">
