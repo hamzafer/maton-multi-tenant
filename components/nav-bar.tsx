@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
 const links = [
   { href: "/dashboard", label: "Dashboard" },
@@ -15,11 +15,32 @@ function NavBarInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
+  const navRef = useRef<HTMLDivElement>(null);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+  const [showIndicator, setShowIndicator] = useState(false);
 
   function linkHref(href: string) {
     if (href === "/dashboard" && email) return `/dashboard?email=${encodeURIComponent(email)}`;
     return href;
   }
+
+  // Calculate indicator position based on active link
+  useEffect(() => {
+    if (!navRef.current) return;
+    const activeLink = navRef.current.querySelector("[data-active='true']") as HTMLElement;
+    if (activeLink) {
+      const navRect = navRef.current.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      setIndicator({
+        left: linkRect.left - navRect.left,
+        width: linkRect.width,
+      });
+      // Delay showing to avoid flash on initial render
+      setTimeout(() => setShowIndicator(true), 50);
+    } else {
+      setShowIndicator(false);
+    }
+  }, [pathname]);
 
   return (
     <nav className="sticky top-0 z-50">
@@ -34,7 +55,19 @@ function NavBarInner() {
             <span className="text-[13px] font-semibold text-text-primary tracking-tight">Maton</span>
           </Link>
 
-          <div className="flex items-center gap-0.5">
+          <div ref={navRef} className="relative flex items-center gap-0.5">
+            {/* Sliding indicator */}
+            {showIndicator && (
+              <div
+                className="absolute top-0.5 h-[calc(100%-4px)] rounded-lg bg-accent/8 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                style={{
+                  left: indicator.left,
+                  width: indicator.width,
+                  boxShadow: "0 0 12px rgba(52,211,153,0.1), inset 0 0 12px rgba(52,211,153,0.04)",
+                }}
+              />
+            )}
+
             {links.map((link) => {
               const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
               return (
@@ -42,15 +75,13 @@ function NavBarInner() {
                   key={link.href}
                   href={linkHref(link.href)}
                   prefetch={false}
-                  className={`relative px-3 py-1.5 rounded-lg text-[12px] font-medium transition-all duration-300 ${
+                  data-active={isActive}
+                  className={`relative px-3 py-1.5 rounded-lg text-[12px] font-medium transition-colors duration-200 ${
                     isActive
                       ? "text-accent"
                       : "text-text-muted hover:text-text-secondary"
                   } ${link.label === "{}" ? "font-mono" : ""}`}
                 >
-                  {isActive && (
-                    <span className="absolute inset-0 rounded-lg bg-accent/8 glow-badge" />
-                  )}
                   <span className="relative">{link.label}</span>
                 </Link>
               );
