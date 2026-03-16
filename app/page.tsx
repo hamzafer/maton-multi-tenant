@@ -26,6 +26,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-grid flex flex-col items-center justify-center px-4 relative overflow-hidden">
       <div className="bg-mesh" />
+      <div className="bg-mesh-extra" />
 
       {/* Hero section — two column on larger screens */}
       <div className="relative z-10 w-full max-w-[880px] flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -99,7 +100,7 @@ export default function Home() {
           </div>
 
           {/* Card */}
-          <div className="animate-fade-up-delay-1 card-glow bg-surface-raised border border-border-subtle rounded-2xl p-6">
+          <div className="animate-fade-up-delay-1 glass-card rounded-2xl p-6">
             <form onSubmit={handleSubmit}>
               <label htmlFor="email" className="block text-[11px] font-medium text-text-secondary mb-2 uppercase tracking-wider">
                 Enter your email to start
