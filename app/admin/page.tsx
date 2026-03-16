@@ -138,7 +138,12 @@ export default function AdminPage() {
                             ) : (
                               <div className="w-7 h-7 rounded-full bg-[rgba(255,255,255,0.05)] ring-1 ring-[rgba(255,255,255,0.06)] flex items-center justify-center text-[10px] text-text-muted font-medium">?</div>
                             )}
-                            <span className="text-text-primary font-mono text-[12px]">{userEmail ?? conn.connection_id.slice(0, 12)}</span>
+                            <a
+                              href={userEmail ? `/dashboard?email=${encodeURIComponent(userEmail)}` : "#"}
+                              className="text-text-primary font-mono text-[12px] hover:text-accent transition-colors"
+                            >
+                              {userEmail ?? conn.connection_id.slice(0, 12)}
+                            </a>
                           </div>
                         </td>
                         <td className="px-4 py-3">

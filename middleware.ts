@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
   matcher: [
-    "/dashboard/:path*",
     "/admin/:path*",
     "/activity/:path*",
     "/store/:path*",
