@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
 
-const DATA_DIR = join(process.cwd(), "data");
+const DATA_DIR = process.env.VERCEL ? "/tmp" : join(process.cwd(), "data");
 const ACTIVITY_PATH = join(DATA_DIR, "activity.json");
 const MAX_ENTRIES = 1000;
 
