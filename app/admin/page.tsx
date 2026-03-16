@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getAppConfig } from "@/lib/apps";
 import EmptyState from "@/components/empty-state";
+import { AdminSkeleton } from "@/components/skeleton";
 
 interface Connection {
   connection_id: string;
@@ -73,6 +74,10 @@ export default function AdminPage() {
           <p className="text-[13px] text-text-muted">All connections across all users</p>
         </div>
 
+        {loading ? (
+          <AdminSkeleton />
+        ) : (
+        <>
         {/* Summary cards */}
         <div className="animate-fade-up-delay-1 grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           {summaryCards.map((card) => (
@@ -103,11 +108,7 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {loading ? (
-            <div className="flex items-center justify-center py-16">
-              <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
-            </div>
-          ) : connections.length === 0 ? (
+          {connections.length === 0 ? (
             <EmptyState variant="connections" />
           ) : (
             <div className="overflow-x-auto">
@@ -197,6 +198,8 @@ export default function AdminPage() {
             <span className="text-[10px] text-text-muted">Refreshes every 10s</span>
           </div>
         </div>
+        </>
+        )}
       </div>
     </div>
   );

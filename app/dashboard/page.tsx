@@ -11,6 +11,7 @@ import GmailViewer from "@/components/gmail-viewer";
 import NotionViewer from "@/components/notion-viewer";
 import GithubViewer from "@/components/github-viewer";
 import EmptyState from "@/components/empty-state";
+import { DashboardSkeleton } from "@/components/skeleton";
 
 interface ConnectionState {
   connectionId: string;
@@ -172,9 +173,7 @@ function DashboardContent() {
         )}
 
         {loading ? (
-          <div className="flex items-center justify-center py-16">
-            <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
-          </div>
+          <DashboardSkeleton />
         ) : (
           <>
             {/* Pending connection modal */}

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import EmptyState from "@/components/empty-state";
+import { ActivitySkeleton } from "@/components/skeleton";
 
 interface ActivityEntry {
   id: string;
@@ -76,6 +77,10 @@ export default function ActivityPage() {
           </div>
         </div>
 
+        {loading ? (
+          <ActivitySkeleton />
+        ) : (
+        <>
         {/* Response time chart */}
         {entries.length > 0 && (
           <div className="animate-fade-up-delay-1 bg-surface-raised border border-border-subtle rounded-2xl p-4 mb-6">
@@ -102,12 +107,8 @@ export default function ActivityPage() {
         )}
 
         {/* Table */}
-        <div className="animate-fade-up-delay-2 card-glow bg-surface-raised border border-border-subtle rounded-2xl overflow-hidden">
-          {loading ? (
-            <div className="flex items-center justify-center py-16">
-              <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
-            </div>
-          ) : entries.length === 0 ? (
+        <div className="animate-fade-up-delay-2 glass-card rounded-2xl overflow-hidden">
+          {entries.length === 0 ? (
             <EmptyState variant="activity" />
           ) : (
             <div className="overflow-x-auto">
@@ -155,6 +156,8 @@ export default function ActivityPage() {
             <span className="text-[11px] text-text-muted">{entries.length} entries &middot; Auto-refreshes every 5s</span>
           </div>
         </div>
+        </>
+        )}
       </div>
     </div>
   );
