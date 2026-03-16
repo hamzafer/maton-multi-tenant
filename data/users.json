@@ -1,0 +1,22 @@
+{
+  "samzainulabideeen@gmail.com": {
+    "connections": {
+      "google-sheets": {
+        "connectionId": "87930322-1030-459a-ab07-de8aed16432b",
+        "status": "ACTIVE",
+        "app": "google-sheets",
+        "oauthUrl": "https://connect.maton.ai/?session_token=93d5fb6007325b492ede0188f334b75021e7ba3bed32984d540a6f64478bba63"
+      }
+    }
+  },
+  "sjamildev@gmail.com": {
+    "connections": {
+      "google-sheets": {
+        "connectionId": "c2688fca-e607-4cea-9f4a-61b95aa311d0",
+        "status": "ACTIVE",
+        "app": "google-sheets",
+        "oauthUrl": "https://connect.maton.ai/?session_token=5f4c6d4c9512a6c19472b5872055d4d3226f2132231900bc23b8a72d3a5e2b88"
+      }
+    }
+  }
+}
