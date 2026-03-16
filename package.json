@@ -9,13 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "^14.2.29",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20.19.37",
+    "@types/node": "^22",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.27",
@@ -23,6 +23,6 @@
     "eslint-config-next": "16.1.6",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.9.3"
   }
 }
