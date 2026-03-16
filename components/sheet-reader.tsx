@@ -20,6 +20,7 @@ export default function SheetReader({ email }: { email: string }) {
       if (!res.ok) throw new Error(json.error);
       setData(json.values ?? []);
     } catch (err) {
+      setData(null);
       setError(err instanceof Error ? err.message : "Failed to read sheet");
     } finally {
       setLoading(false);
