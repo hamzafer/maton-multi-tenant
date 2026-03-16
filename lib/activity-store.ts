@@ -1,8 +1,10 @@
+import { put, get } from "@vercel/blob";
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
 
-const DATA_DIR = process.env.VERCEL ? "/tmp" : join(process.cwd(), "data");
-const ACTIVITY_PATH = join(DATA_DIR, "activity.json");
+const useBlob = !!process.env.BLOB_READ_WRITE_TOKEN;
+const BLOB_KEY = "activity.json";
+const LOCAL_PATH = join(process.cwd(), "data", "activity.json");
 const MAX_ENTRIES = 1000;
 
 export interface ActivityEntry {
@@ -16,36 +18,54 @@ export interface ActivityEntry {
   responseTimeMs: number;
 }
 
-function read(): ActivityEntry[] {
-  if (!existsSync(ACTIVITY_PATH)) return [];
-  return JSON.parse(readFileSync(ACTIVITY_PATH, "utf-8"));
+async function read(): Promise<ActivityEntry[]> {
+  if (useBlob) {
+    try {
+      const result = await get(BLOB_KEY, { access: "private" });
+      if (!result || result.statusCode !== 200) return [];
+      const text = await new Response(result.stream).text();
+      return JSON.parse(text);
+    } catch {
+      return [];
+    }
+  }
+  if (!existsSync(LOCAL_PATH)) return [];
+  return JSON.parse(readFileSync(LOCAL_PATH, "utf-8"));
 }
 
-function write(entries: ActivityEntry[]) {
-  if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
-  writeFileSync(ACTIVITY_PATH, JSON.stringify(entries, null, 2));
+async function write(entries: ActivityEntry[]): Promise<void> {
+  if (useBlob) {
+    await put(BLOB_KEY, JSON.stringify(entries, null, 2), {
+      access: "private",
+      allowOverwrite: true,
+      addRandomSuffix: false,
+    });
+    return;
+  }
+  const dir = join(process.cwd(), "data");
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  writeFileSync(LOCAL_PATH, JSON.stringify(entries, null, 2));
 }
 
-export function logActivity(entry: Omit<ActivityEntry, "id" | "timestamp">) {
-  const entries = read();
+export async function logActivity(entry: Omit<ActivityEntry, "id" | "timestamp">): Promise<void> {
+  const entries = await read();
   entries.push({
     ...entry,
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     timestamp: new Date().toISOString(),
   });
-  // FIFO cap
   if (entries.length > MAX_ENTRIES) {
     entries.splice(0, entries.length - MAX_ENTRIES);
   }
-  write(entries);
+  await write(entries);
 }
 
-export function getActivities(filters?: {
+export async function getActivities(filters?: {
   app?: string;
   email?: string;
   limit?: number;
-}): ActivityEntry[] {
-  let entries = read();
+}): Promise<ActivityEntry[]> {
+  let entries = await read();
 
   if (filters?.app) {
     entries = entries.filter((e) => e.app === filters.app);
@@ -54,7 +74,6 @@ export function getActivities(filters?: {
     entries = entries.filter((e) => e.email === filters.email);
   }
 
-  // Most recent first
   entries.reverse();
 
   if (filters?.limit) {

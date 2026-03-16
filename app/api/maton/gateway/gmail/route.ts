@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "email is required" }, { status: 400 });
     }
 
-    const conn = getConnection(email, "google-mail");
+    const conn = await getConnection(email, "google-mail");
     if (!conn) {
       return NextResponse.json({ error: "No Gmail connection found" }, { status: 404 });
     }

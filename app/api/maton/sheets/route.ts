@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const conn = getConnection(email, "google-sheets");
+    const conn = await getConnection(email, "google-sheets");
     if (!conn) {
       return NextResponse.json({ error: "No connection found" }, { status: 404 });
     }

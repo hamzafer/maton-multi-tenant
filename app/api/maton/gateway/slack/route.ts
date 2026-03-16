@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "email, channel, and text are required" }, { status: 400 });
     }
 
-    const conn = getConnection(email, "slack");
+    const conn = await getConnection(email, "slack");
     if (!conn) {
       return NextResponse.json({ error: "No Slack connection found" }, { status: 404 });
     }

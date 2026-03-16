@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "email is required" }, { status: 400 });
     }
 
-    const conn = getConnection(email, "notion");
+    const conn = await getConnection(email, "notion");
     if (!conn) {
       return NextResponse.json({ error: "No Notion connection found" }, { status: 404 });
     }

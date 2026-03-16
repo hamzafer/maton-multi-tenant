@@ -9,13 +9,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "email and app are required" }, { status: 400 });
     }
 
-    const conn = getConnection(email, app);
+    const conn = await getConnection(email, app);
     if (!conn) {
       return NextResponse.json({ error: "No connection found" }, { status: 404 });
     }
 
     await deleteConnectionById(conn.connectionId);
-    deleteConnection(email, app);
+    await deleteConnection(email, app);
 
     return NextResponse.json({ success: true });
   } catch (err) {

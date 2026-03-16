@@ -24,7 +24,7 @@ export async function gatewayCall(opts: GatewayCallOptions): Promise<FetchWithMe
     },
   });
 
-  logActivity({
+  await logActivity({
     email,
     app,
     endpoint: path,

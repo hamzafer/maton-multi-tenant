@@ -7,6 +7,6 @@ export async function GET(req: NextRequest) {
   const email = searchParams.get("email") || undefined;
   const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")!) : 100;
 
-  const activities = getActivities({ app, email, limit });
+  const activities = await getActivities({ app, email, limit });
   return NextResponse.json({ activities });
 }

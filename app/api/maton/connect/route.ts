@@ -10,13 +10,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Check if THIS user already has a connection for this app in our local store
-    const existing = getConnection(email, app);
+    const existing = await getConnection(email, app);
     if (existing) {
       // Verify it's still active on Maton's side
       try {
         const live = await matonGetConnection(existing.connectionId);
         if (live.status === "ACTIVE") {
-          saveConnection(email, app, { ...existing, status: "ACTIVE" });
+          await saveConnection(email, app, { ...existing, status: "ACTIVE" });
           return NextResponse.json({
             connectionId: live.connection_id,
             status: live.status,
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     // Always create a NEW connection for this user
     const connection = await createConnection(app);
 
-    saveConnection(email, app, {
+    await saveConnection(email, app, {
       connectionId: connection.connection_id,
       status: connection.status,
       app: connection.app,

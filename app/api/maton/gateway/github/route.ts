@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "email is required" }, { status: 400 });
     }
 
-    const conn = getConnection(email, "github");
+    const conn = await getConnection(email, "github");
     if (!conn) {
       return NextResponse.json({ error: "No GitHub connection found" }, { status: 404 });
     }

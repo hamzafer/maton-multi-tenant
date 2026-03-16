@@ -1,21 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync, existsSync } from "fs";
-import { join } from "path";
+import { getAllUsers } from "@/lib/store";
+import { getActivities } from "@/lib/activity-store";
 
 export async function GET(req: NextRequest) {
   const file = new URL(req.url).searchParams.get("file");
-  const dataDir = join(process.cwd(), "data");
 
   if (file === "users") {
-    const path = join(dataDir, "users.json");
-    if (!existsSync(path)) return NextResponse.json({});
-    return NextResponse.json(JSON.parse(readFileSync(path, "utf-8")));
+    const users = await getAllUsers();
+    return NextResponse.json(users);
   }
 
   if (file === "activity") {
-    const path = join(dataDir, "activity.json");
-    if (!existsSync(path)) return NextResponse.json([]);
-    return NextResponse.json(JSON.parse(readFileSync(path, "utf-8")));
+    const activities = await getActivities();
+    return NextResponse.json(activities);
   }
 
   return NextResponse.json({ error: "file param must be 'users' or 'activity'" }, { status: 400 });

@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Email is required" }, { status: 400 });
   }
 
-  const connections = getUserConnections(email);
+  const connections = await getUserConnections(email);
   if (!connections || Object.keys(connections).length === 0) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
@@ -24,11 +24,11 @@ export async function GET(req: NextRequest) {
     try {
       const live = await matonGetConnection(conn.connectionId);
       const updated = { ...conn, status: live.status, oauthUrl: live.url };
-      saveConnection(email, app, updated);
+      await saveConnection(email, app, updated);
       return NextResponse.json(updated);
     } catch {
       // Stale connection — remove from store
-      deleteConnection(email, app);
+      await deleteConnection(email, app);
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
   }
@@ -39,11 +39,11 @@ export async function GET(req: NextRequest) {
     try {
       const live = await matonGetConnection(conn.connectionId);
       const updated = { ...conn, status: live.status, oauthUrl: live.url };
-      saveConnection(email, appSlug, updated);
+      await saveConnection(email, appSlug, updated);
       synced[appSlug] = updated;
     } catch {
       // Stale connection — remove from store
-      deleteConnection(email, appSlug);
+      await deleteConnection(email, appSlug);
     }
   }
 
