@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import NavBar from "@/components/nav-bar";
+import Sidebar from "@/components/sidebar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,9 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className="noise-overlay">
-        <NavBar />
-        {children}
+      <body className="noise-overlay flex min-h-screen">
+        <Sidebar />
+        <main className="flex-1 min-w-0">
+          {children}
+        </main>
       </body>
     </html>
   );
