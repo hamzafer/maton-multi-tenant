@@ -22,6 +22,7 @@ import SnakeGameOverlay from "@/components/snake-game-overlay";
 import ScreenShake from "@/components/screen-shake";
 import TimeTheme from "@/components/time-theme";
 import PageTransition from "@/components/page-transition";
+import AchievementSystem from "@/components/achievements";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -65,6 +66,7 @@ export default function RootLayout({
             {children}
           </main>
           <HeartbeatBar />
+          <AchievementSystem />
           <Screensaver />
         </ToastProvider>
       </body>
