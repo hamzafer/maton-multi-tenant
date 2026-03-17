@@ -15,6 +15,7 @@ import BootSplash from "@/components/boot-splash";
 import MagneticField from "@/components/magnetic-field";
 import ContextMenu from "@/components/context-menu";
 import DynamicFavicon from "@/components/dynamic-favicon";
+import Screensaver from "@/components/screensaver";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function RootLayout({
             {children}
           </main>
           <HeartbeatBar />
+          <Screensaver />
         </ToastProvider>
       </body>
     </html>
