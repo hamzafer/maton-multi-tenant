@@ -17,6 +17,7 @@ import ContextMenu from "@/components/context-menu";
 import DynamicFavicon from "@/components/dynamic-favicon";
 import Screensaver from "@/components/screensaver";
 import ClickShockwave from "@/components/click-shockwave";
+import ScrollProgress from "@/components/scroll-progress";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -50,6 +51,7 @@ export default function RootLayout({
           <CrtTerminal />
           <ShortcutSheet />
           <ContextMenu />
+          <ScrollProgress />
           <Sidebar />
           <main className="flex-1 min-w-0 pb-14">
             {children}
