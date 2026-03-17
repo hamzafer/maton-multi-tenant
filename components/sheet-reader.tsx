@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import EmptyState from "@/components/empty-state";
+import RippleButton from "@/components/ripple-button";
 
 export default function SheetReader({ email }: { email: string }) {
   const [spreadsheetId, setSpreadsheetId] = useState("");
@@ -52,7 +53,7 @@ export default function SheetReader({ email }: { email: string }) {
         </div>
       </div>
 
-      <button
+      <RippleButton
         onClick={handleRead}
         disabled={!spreadsheetId || loading}
         className="inline-flex items-center gap-2 bg-accent text-surface font-semibold text-[12px] py-2.5 px-5 rounded-xl btn-press hover:brightness-110 transition-all disabled:opacity-40"
@@ -70,7 +71,7 @@ export default function SheetReader({ email }: { email: string }) {
             Fetch Data
           </>
         )}
-      </button>
+      </RippleButton>
 
       {error && (
         <div className="p-3 rounded-xl bg-danger-dim/15 border border-danger/15 text-danger text-[12px] flex items-center gap-2">

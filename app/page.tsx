@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Typewriter from "@/components/typewriter";
+import RippleButton from "@/components/ripple-button";
 
 const ORBIT_ICONS = [
   { label: "Sheets", color: "#34A853", delay: "0s", d: "M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z" },
@@ -132,12 +133,12 @@ export default function Home() {
                   </div>
                 )}
               </div>
-              <button
+              <RippleButton
                 type="submit"
                 className="mt-3 w-full bg-accent text-surface font-semibold text-[14px] py-3 px-4 rounded-xl btn-press hover:brightness-110 transition-all duration-200"
               >
                 Continue
-              </button>
+              </RippleButton>
             </form>
           </div>
 
