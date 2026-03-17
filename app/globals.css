@@ -412,3 +412,9 @@ html {
 .hover-tilt:hover {
   animation: subtleTilt 4s ease-in-out infinite;
 }
+
+/* Sound wave bars animation */
+@keyframes soundWave {
+  0% { height: 3px; }
+  100% { height: 14px; }
+}

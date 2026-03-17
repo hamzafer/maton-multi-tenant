@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
 import { playNav } from "@/lib/sounds";
+import AmbientToggle from "@/components/ambient-toggle";
 
 interface NavItem {
   href: string;
@@ -150,6 +151,9 @@ function SidebarInner() {
           {/* Bottom section */}
           <div className="px-2 pb-3 shrink-0">
             <div className="mx-1 mb-2 h-px bg-[rgba(255,255,255,0.05)]" />
+
+            {/* Ambient music toggle */}
+            <AmbientToggle expanded={isOpen} />
 
             {/* Pin toggle */}
             <button
