@@ -7,6 +7,7 @@ import RippleButton from "@/components/ripple-button";
 import WaveDivider from "@/components/wave-divider";
 import TiltCard from "@/components/tilt-card";
 import ScrambleText from "@/components/scramble-text";
+import VisitorCounter from "@/components/visitor-counter";
 
 const ORBIT_ICONS = [
   { label: "Sheets", color: "#34A853", delay: "0s", d: "M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z" },
@@ -158,6 +159,11 @@ export default function Home() {
             <span className="text-[11px] text-text-muted">Multi-tenant</span>
           </div>
         </div>
+      </div>
+
+      {/* Visitor counter */}
+      <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-10 animate-fade-up-delay-3">
+        <VisitorCounter />
       </div>
 
       {/* Animated wave at bottom */}
