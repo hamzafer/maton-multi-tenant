@@ -107,7 +107,7 @@ export default function Home() {
           </div>
 
           {/* Card */}
-          <div className="animate-fade-up-delay-1 glass-card rounded-2xl p-6">
+          <div className="animate-fade-up-delay-1 glass-card gradient-border rounded-2xl p-6">
             <form onSubmit={handleSubmit}>
               <label htmlFor="email" className="block text-[11px] font-medium text-text-secondary mb-2 uppercase tracking-wider">
                 Enter your email to start

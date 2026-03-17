@@ -339,3 +339,76 @@ input:focus, textarea:focus {
 html {
   scroll-behavior: smooth;
 }
+
+/* Rotating gradient border — apply to a wrapper, card goes inside */
+@keyframes borderRotate {
+  from { --border-angle: 0deg; }
+  to { --border-angle: 360deg; }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+  isolation: isolate;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    rgba(52, 211, 153, 0.4) 50%,
+    transparent 75%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: borderRotate 4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Ripple effect container */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-container .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.25);
+  transform: scale(0);
+  animation: rippleExpand 0.6s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rippleExpand {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Magnetic hover tilt — CSS-only subtle version */
+@keyframes subtleTilt {
+  0%, 100% { transform: perspective(600px) rotateX(0) rotateY(0); }
+  25% { transform: perspective(600px) rotateX(0.5deg) rotateY(-0.5deg); }
+  50% { transform: perspective(600px) rotateX(-0.3deg) rotateY(0.5deg); }
+  75% { transform: perspective(600px) rotateX(0.5deg) rotateY(0.3deg); }
+}
+.hover-tilt:hover {
+  animation: subtleTilt 4s ease-in-out infinite;
+}

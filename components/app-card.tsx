@@ -21,7 +21,7 @@ export default function AppCard({ app, status, onConnect, onDisconnect, onSelect
     <div
       onClick={() => { if (isConnected) { playClick(); onSelect(); } }}
       onMouseEnter={playHover}
-      className={`app-card relative group border rounded-xl p-4 transition-all duration-300 ${
+      className={`gradient-border hover-tilt app-card relative group border rounded-xl p-4 transition-all duration-300 ${
         selected
           ? "border-accent/30 bg-accent/5 shadow-[0_0_30px_rgba(52,211,153,0.08)] -translate-y-0.5"
           : isConnected
