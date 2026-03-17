@@ -23,6 +23,7 @@ const CATEGORIES: Category[] = [
     shortcuts: [
       { keys: ["⌘", "K"], label: "Command Palette", description: "Fuzzy search & jump to any page" },
       { keys: ["?"], label: "This Sheet", description: "Show all shortcuts & secrets" },
+      { keys: ["F"], label: "Focus Mode", description: "Dim all chrome, zen mode" },
       { keys: ["Esc"], label: "Close", description: "Close any overlay or modal" },
     ],
   },

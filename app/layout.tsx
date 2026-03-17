@@ -27,6 +27,7 @@ import CreditsRoll from "@/components/credits-roll";
 import CustomCursor from "@/components/custom-cursor";
 import Fireworks from "@/components/fireworks";
 import TypingTrail from "@/components/typing-trail";
+import FocusMode from "@/components/focus-mode";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -58,6 +59,7 @@ export default function RootLayout({
           <CustomCursor />
           <MagneticField />
           <ScreenShake />
+          <FocusMode />
           <KonamiEasterEgg />
           <CommandPalette />
           <MatrixRain />
