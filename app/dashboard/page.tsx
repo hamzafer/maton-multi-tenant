@@ -13,6 +13,7 @@ import GithubViewer from "@/components/github-viewer";
 import EmptyState from "@/components/empty-state";
 import { DashboardSkeleton } from "@/components/skeleton";
 import OrbitalSpinner from "@/components/orbital-spinner";
+import { useConfetti } from "@/components/confetti";
 
 // --- "Connect the APIs" mini game ---
 const GAME_NODES = [
@@ -31,6 +32,7 @@ function ConnectTheAPIsGame() {
   const [complete, setComplete] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
   const boardRef = useRef<HTMLDivElement>(null);
+  const gameConfetti = useConfetti();
 
   const totalPossible = 10; // C(5,2)
   const progress = Math.min(connections.length / 3, 1); // unlock at 3
@@ -58,6 +60,7 @@ function ConnectTheAPIsGame() {
       setConnections(next);
       if (next.length >= 3 && !complete) {
         setComplete(true);
+        gameConfetti();
       }
     }
 
@@ -302,6 +305,7 @@ function DashboardContent() {
   const [loading, setLoading] = useState(true);
   const [loadingApp, setLoadingApp] = useState<string | null>(null);
   const [error, setError] = useState("");
+  const fireConfetti = useConfetti();
 
   const fetchConnections = useCallback(async () => {
     try {
@@ -415,6 +419,7 @@ function DashboardContent() {
     }));
     setSelectedApp(app);
     setConnectingApp(null);
+    fireConfetti();
     // Also sync with server to update the store
     fetchConnections();
   }
