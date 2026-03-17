@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useRef } from "react";
 import { playNav } from "@/lib/sounds";
 import AmbientToggle from "@/components/ambient-toggle";
 import AnimatedLogo from "@/components/animated-logo";
@@ -51,6 +51,49 @@ const navItems: NavItem[] = [
     ),
   },
 ];
+
+function SessionTracker() {
+  const [elapsed, setElapsed] = useState(0);
+  const [events, setEvents] = useState(0);
+  const startRef = useRef(Date.now());
+  const eventsRef = useRef(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setElapsed(Math.floor((Date.now() - startRef.current) / 1000));
+    }, 1000);
+
+    function countEvent() {
+      eventsRef.current++;
+      setEvents(eventsRef.current);
+    }
+
+    window.addEventListener("click", countEvent, { passive: true });
+    window.addEventListener("keydown", countEvent, { passive: true });
+
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener("click", countEvent);
+      window.removeEventListener("keydown", countEvent);
+    };
+  }, []);
+
+  const mins = Math.floor(elapsed / 60);
+  const secs = elapsed % 60;
+  const time = `${mins}:${secs.toString().padStart(2, "0")}`;
+
+  return (
+    <div className="mt-2 mx-0.5 px-2.5 py-1.5 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.03)] animate-fade-in">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-1.5">
+          <span className="w-1 h-1 rounded-full bg-accent/40" />
+          <span className="text-[9px] font-mono text-text-muted">{time}</span>
+        </div>
+        <span className="text-[9px] font-mono text-text-muted">{events.toLocaleString()} events</span>
+      </div>
+    </div>
+  );
+}
 
 function SidebarInner() {
   const pathname = usePathname();
@@ -192,6 +235,9 @@ function SidebarInner() {
                 <p className="text-[11px] text-text-secondary font-mono truncate">{email}</p>
               </div>
             )}
+
+            {/* Session tracker */}
+            {isOpen && <SessionTracker />}
           </div>
         </div>
       </aside>
