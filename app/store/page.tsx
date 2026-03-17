@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import OrbitalSpinner from "@/components/orbital-spinner";
 import FlowField from "@/components/flow-field";
 import ScrambleText from "@/components/scramble-text";
+import JsonViewer from "@/components/json-viewer";
 
 export default function StorePage() {
   const [storeData, setStoreData] = useState<string>("");
@@ -83,9 +84,7 @@ export default function StorePage() {
               <OrbitalSpinner size={48} />
             </div>
           ) : (
-            <pre className="p-6 text-[12px] font-mono text-text-secondary leading-relaxed overflow-x-auto max-h-[70vh] overflow-y-auto">
-              {data}
-            </pre>
+            <JsonViewer json={data} />
           )}
         </div>
       </div>
