@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getAppConfig } from "@/lib/apps";
 import EmptyState from "@/components/empty-state";
+import NumberTicker from "@/components/number-ticker";
 import { AdminSkeleton } from "@/components/skeleton";
 
 interface Connection {
@@ -87,7 +88,7 @@ export default function AdminPage() {
               style={{ borderColor: card.accent }}
             >
               <p className="text-[10px] text-text-muted uppercase tracking-widest mb-2">{card.label}</p>
-              <p className={`text-[28px] font-bold tracking-tight ${card.color}`}>{card.value}</p>
+              <p className={`text-[28px] font-bold tracking-tight ${card.color}`}><NumberTicker value={card.value} /></p>
             </div>
           ))}
         </div>

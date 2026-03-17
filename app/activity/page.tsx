@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import EmptyState from "@/components/empty-state";
 import { ActivitySkeleton } from "@/components/skeleton";
 import Reveal from "@/components/reveal";
+import NumberTicker from "@/components/number-ticker";
 
 interface ActivityEntry {
   id: string;
@@ -217,7 +218,7 @@ export default function ActivityPage() {
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <p className="text-[10px] text-text-muted uppercase tracking-widest mb-1.5">Total Calls</p>
-                    <p className="text-[32px] font-bold tracking-tight text-text-primary leading-none">{analytics.totalCalls}</p>
+                    <p className="text-[32px] font-bold tracking-tight text-text-primary leading-none"><NumberTicker value={analytics.totalCalls} /></p>
                   </div>
                   <div className="w-9 h-9 rounded-xl bg-accent/8 border border-accent/15 flex items-center justify-center group-hover:bg-accent/12 transition-colors">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="text-accent">
@@ -238,7 +239,7 @@ export default function ActivityPage() {
                   <div>
                     <p className="text-[10px] text-text-muted uppercase tracking-widest mb-1.5">Avg Response</p>
                     <div className="flex items-baseline gap-1">
-                      <p className="text-[32px] font-bold tracking-tight text-text-primary leading-none">{analytics.avgResponseTime}</p>
+                      <p className="text-[32px] font-bold tracking-tight text-text-primary leading-none"><NumberTicker value={analytics.avgResponseTime} /></p>
                       <span className="text-[12px] text-text-muted font-mono">ms</span>
                     </div>
                   </div>
@@ -272,7 +273,7 @@ export default function ActivityPage() {
                   <div>
                     <p className="text-[10px] text-text-muted uppercase tracking-widest mb-1.5">Success Rate</p>
                     <div className="flex items-baseline gap-1">
-                      <p className="text-[32px] font-bold tracking-tight text-text-primary leading-none">{analytics.successRate}</p>
+                      <p className="text-[32px] font-bold tracking-tight text-text-primary leading-none"><NumberTicker value={analytics.successRate} /></p>
                       <span className="text-[14px] text-text-muted">%</span>
                     </div>
                   </div>
