@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Sidebar from "@/components/sidebar";
 import ParticleConstellation from "@/components/particles";
 import KonamiEasterEgg from "@/components/konami-easter-egg";
+import CursorGlow from "@/components/cursor-glow";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="noise-overlay flex min-h-screen">
         <ParticleConstellation />
+        <CursorGlow />
         <KonamiEasterEgg />
         <Sidebar />
         <main className="flex-1 min-w-0">
