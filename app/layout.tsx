@@ -13,6 +13,7 @@ import ShootingStars from "@/components/shooting-stars";
 import ShortcutSheet from "@/components/shortcut-sheet";
 import BootSplash from "@/components/boot-splash";
 import MagneticField from "@/components/magnetic-field";
+import ContextMenu from "@/components/context-menu";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default function RootLayout({
           <MatrixRain />
           <CrtTerminal />
           <ShortcutSheet />
+          <ContextMenu />
           <Sidebar />
           <main className="flex-1 min-w-0 pb-14">
             {children}
