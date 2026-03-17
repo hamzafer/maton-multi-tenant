@@ -1,6 +1,7 @@
 "use client";
 
 import { type AppConfig } from "@/lib/apps";
+import { playClick, playHover } from "@/lib/sounds";
 
 interface Props {
   app: AppConfig;
@@ -18,7 +19,8 @@ export default function AppCard({ app, status, onConnect, onDisconnect, onSelect
 
   return (
     <div
-      onClick={isConnected ? onSelect : undefined}
+      onClick={() => { if (isConnected) { playClick(); onSelect(); } }}
+      onMouseEnter={playHover}
       className={`app-card relative group border rounded-xl p-4 transition-all duration-300 ${
         selected
           ? "border-accent/30 bg-accent/5 shadow-[0_0_30px_rgba(52,211,153,0.08)] -translate-y-0.5"
@@ -65,7 +67,7 @@ export default function AppCard({ app, status, onConnect, onDisconnect, onSelect
 
       {!isConnected && !isPending && (
         <button
-          onClick={(e) => { e.stopPropagation(); onConnect(); }}
+          onClick={(e) => { e.stopPropagation(); playClick(); onConnect(); }}
           disabled={loading}
           className="w-full text-[12px] font-medium py-1.5 rounded-lg border border-border-default text-text-secondary hover:text-text-primary hover:border-border-default hover:bg-surface-hover btn-press transition-all disabled:opacity-50"
         >

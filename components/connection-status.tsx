@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { playConnect } from "@/lib/sounds";
 
 interface Props {
   connectionId: string;
@@ -32,6 +33,7 @@ export default function ConnectionStatus({ connectionId, oauthUrl, app, onConnec
         if (data.status === "ACTIVE") {
           if (intervalRef.current) clearInterval(intervalRef.current);
           if (timerRef.current) clearInterval(timerRef.current);
+          playConnect();
           onConnected();
         }
       } catch {

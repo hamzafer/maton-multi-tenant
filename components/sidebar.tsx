@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
+import { playNav } from "@/lib/sounds";
 
 interface NavItem {
   href: string;
@@ -111,6 +112,7 @@ function SidebarInner() {
                   key={item.href}
                   href={linkHref(item.href)}
                   prefetch={false}
+                  onClick={playNav}
                   className={`sidebar-item group relative flex items-center gap-3 h-9 rounded-lg px-2.5 transition-all duration-200 ${
                     isActive
                       ? "text-accent"
