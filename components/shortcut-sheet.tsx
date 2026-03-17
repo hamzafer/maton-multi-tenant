@@ -50,6 +50,7 @@ const CATEGORIES: Category[] = [
     shortcuts: [
       { keys: ["Dashboard"], label: "Connect the APIs", description: "Visit /dashboard without email" },
       { keys: ["Empty"], label: "Breakout", description: "Classic game in empty connections" },
+      { keys: ["Reload"], label: "Boot Sequence", description: "New session shows startup animation" },
     ],
   },
 ];
