@@ -359,14 +359,14 @@ export default function ActivityPage() {
                 {/* Bars */}
                 <div className="flex items-end gap-[3px] h-28 pl-12">
                   {entries.slice(0, 50).reverse().map((entry, i) => {
-                    const height = Math.max((entry.responseTimeMs / analytics.maxResponseTime) * 100, 2);
+                    const heightPx = Math.max((entry.responseTimeMs / analytics.maxResponseTime) * 112, 2); // 112px = h-28
                     const isError = entry.statusCode >= 400;
                     return (
-                      <div key={entry.id} className="flex-1 min-w-[3px] group/bar relative">
+                      <div key={entry.id} className="flex-1 min-w-[3px] group/bar relative h-full">
                         <div
-                          className="w-full rounded-t-sm transition-all duration-300 hover:brightness-125 cursor-default"
+                          className="w-full rounded-t-sm transition-all duration-300 hover:brightness-125 cursor-default absolute bottom-0"
                           style={{
-                            height: `${height}%`,
+                            height: `${heightPx}px`,
                             background: isError
                               ? "linear-gradient(to top, rgba(248,113,113,0.5), rgba(248,113,113,0.8))"
                               : `linear-gradient(to top, rgba(52,211,153,${0.2 + (i / 50) * 0.3}), rgba(52,211,153,${0.4 + (i / 50) * 0.5}))`,
