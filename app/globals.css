@@ -2259,3 +2259,149 @@ button, a, .app-card, .glass-card, .btn-press {
   border: 1px solid rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.25);
 }
+
+/* ═══════════════════════════════════════════
+   Sound Board
+   ═══════════════════════════════════════════ */
+
+@keyframes sbBtnReveal {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes sbRingExpand {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(2.5); opacity: 0; }
+}
+
+.soundboard-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.2s ease;
+}
+
+.soundboard-panel {
+  width: min(460px, 90vw);
+  background: rgba(12, 12, 16, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(52, 211, 153, 0.04);
+  animation: sheetSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+.soundboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 12px;
+}
+.soundboard-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.soundboard-subtitle {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+.soundboard-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.3);
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.soundboard-close:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.soundboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px 24px 20px;
+}
+@media (max-width: 400px) {
+  .soundboard-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.soundboard-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: sbBtnReveal 0.25s ease forwards;
+  opacity: 0;
+  overflow: hidden;
+}
+.soundboard-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: color-mix(in srgb, var(--sb-color) 20%, transparent);
+  transform: translateY(-1px);
+}
+.soundboard-btn:active {
+  transform: scale(0.95);
+}
+.soundboard-btn-active {
+  background: color-mix(in srgb, var(--sb-color) 8%, transparent) !important;
+  border-color: color-mix(in srgb, var(--sb-color) 25%, transparent) !important;
+}
+
+.soundboard-btn-icon {
+  font-size: 20px;
+  color: var(--sb-color);
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--sb-color) 40%, transparent));
+  transition: transform 0.15s;
+}
+.soundboard-btn:hover .soundboard-btn-icon {
+  transform: scale(1.15);
+}
+
+.soundboard-btn-name {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.5px;
+}
+
+.soundboard-btn-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid;
+  border-radius: 12px;
+  animation: sbRingExpand 0.4s ease-out forwards;
+  pointer-events: none;
+}
+
+.soundboard-footer {
+  padding: 12px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.15);
+  text-align: center;
+}
