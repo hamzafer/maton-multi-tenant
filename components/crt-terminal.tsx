@@ -46,6 +46,7 @@ const COMMANDS: Record<string, (args: string[]) => Line[]> = {
     { text: "  date          Current date/time", type: "output" },
     { text: "  uptime        System uptime", type: "output" },
     { text: "  cowsay <msg>  Moo", type: "output" },
+    { text: "  snake         Play Snake (exit terminal first, type 'snake')", type: "output" },
     { text: "  clear         Clear terminal", type: "output" },
     { text: "  exit          Close terminal", type: "output" },
     { text: "", type: "output" },
