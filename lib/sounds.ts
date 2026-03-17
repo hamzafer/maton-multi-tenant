@@ -12,6 +12,32 @@ function getCtx(): AudioContext {
   return audioCtx;
 }
 
+// Text scramble — rapid digital chatter
+export function playScramble() {
+  try {
+    const ctx = getCtx();
+    // Quick burst of high-freq noise, like data being decoded
+    const bufferSize = ctx.sampleRate * 0.08;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      // Decaying crackle
+      data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize) * 0.6;
+    }
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    const bandpass = ctx.createBiquadFilter();
+    bandpass.type = "bandpass";
+    bandpass.frequency.setValueAtTime(4000, ctx.currentTime);
+    bandpass.Q.setValueAtTime(3, ctx.currentTime);
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.015, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+    source.connect(bandpass).connect(gain).connect(ctx.destination);
+    source.start(ctx.currentTime);
+  } catch {}
+}
+
 // Soft click — short sine blip
 export function playClick() {
   try {

@@ -486,6 +486,15 @@ html {
   opacity: 1;
 }
 
+/* Scramble text effect */
+.scramble-text {
+  display: inline-block;
+  transition: text-shadow 0.3s ease;
+}
+.scramble-active {
+  text-shadow: 0 0 8px rgba(52, 211, 153, 0.15);
+}
+
 /* Toast animations */
 @keyframes toastIn {
   from { opacity: 0; transform: translateY(16px) scale(0.95); }

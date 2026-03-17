@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { playScramble } from "@/lib/sounds";
 
 const GLYPHS = "アイウエオカキクケコ01!@#$%&=+<>{}[]ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -32,6 +33,7 @@ export default function ScrambleText({
     if (scrambling) return;
     setScrambling(true);
     onScrambleStart?.();
+    playScramble();
 
     const original = text;
     const length = original.length;
