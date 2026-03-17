@@ -43,6 +43,7 @@ const CATEGORIES: Category[] = [
       { keys: ["Click"], label: "Heartbeat Bar", description: "Expand system vital signs" },
       { keys: ["🎵"], label: "Ambient Toggle", description: "Generative drone music in sidebar" },
       { keys: ["Near"], label: "Magnetic Buttons", description: "Buttons pull toward your cursor" },
+      { keys: ["Right", "Click"], label: "Context Menu", description: "Custom menu with quick actions" },
     ],
   },
   {
