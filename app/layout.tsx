@@ -20,6 +20,7 @@ import ClickShockwave from "@/components/click-shockwave";
 import ScrollProgress from "@/components/scroll-progress";
 import SnakeGameOverlay from "@/components/snake-game-overlay";
 import ScreenShake from "@/components/screen-shake";
+import TimeTheme from "@/components/time-theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -39,6 +40,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="noise-overlay flex min-h-screen">
         <ToastProvider>
+          <TimeTheme />
           <BootSplash />
           <DynamicFavicon />
           <ConsoleArt />
