@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
 import { playNav } from "@/lib/sounds";
 import AmbientToggle from "@/components/ambient-toggle";
+import AnimatedLogo from "@/components/animated-logo";
 
 interface NavItem {
   href: string;
@@ -89,10 +90,8 @@ function SidebarInner() {
           {/* Logo */}
           <div className="h-14 flex items-center px-4 gap-3 shrink-0">
             <Link href="/" className="flex items-center gap-3 group min-w-0">
-              <div className="w-7 h-7 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-accent/15 group-hover:border-accent/30 group-hover:shadow-[0_0_16px_rgba(52,211,153,0.2)]">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-accent" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6z" />
-                </svg>
+              <div className="shrink-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]">
+                <AnimatedLogo size={28} />
               </div>
               <span className={`sidebar-label text-[13px] font-semibold text-text-primary tracking-tight ${isOpen ? "" : "sidebar-label-hidden"}`}>
                 Maton
