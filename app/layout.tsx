@@ -19,6 +19,7 @@ import Screensaver from "@/components/screensaver";
 import ClickShockwave from "@/components/click-shockwave";
 import ScrollProgress from "@/components/scroll-progress";
 import SnakeGameOverlay from "@/components/snake-game-overlay";
+import ScreenShake from "@/components/screen-shake";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -46,6 +47,7 @@ export default function RootLayout({
           <ClickShockwave />
           <CursorGlow />
           <MagneticField />
+          <ScreenShake />
           <KonamiEasterEgg />
           <CommandPalette />
           <MatrixRain />
