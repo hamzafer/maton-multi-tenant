@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Typewriter from "@/components/typewriter";
 import RippleButton from "@/components/ripple-button";
+import WaveDivider from "@/components/wave-divider";
+import TiltCard from "@/components/tilt-card";
 
 const ORBIT_ICONS = [
   { label: "Sheets", color: "#34A853", delay: "0s", d: "M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z" },
@@ -107,8 +109,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Card */}
-          <div className="animate-fade-up-delay-1 glass-card gradient-border rounded-2xl p-6">
+          {/* Card with holographic tilt */}
+          <TiltCard className="animate-fade-up-delay-1 glass-card gradient-border rounded-2xl p-6">
             <form onSubmit={handleSubmit}>
               <label htmlFor="email" className="block text-[11px] font-medium text-text-secondary mb-2 uppercase tracking-wider">
                 Enter your email to start
@@ -140,7 +142,7 @@ export default function Home() {
                 Continue
               </RippleButton>
             </form>
-          </div>
+          </TiltCard>
 
           <div className="animate-fade-up-delay-2 flex items-center gap-4 mt-6">
             <span className="flex items-center gap-1.5 text-[11px] text-text-muted">
@@ -155,6 +157,11 @@ export default function Home() {
             <span className="text-[11px] text-text-muted">Multi-tenant</span>
           </div>
         </div>
+      </div>
+
+      {/* Animated wave at bottom */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <WaveDivider color="rgba(52,211,153,0.06)" speed={25} />
       </div>
     </div>
   );
