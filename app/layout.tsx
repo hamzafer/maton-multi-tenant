@@ -7,6 +7,7 @@ import CommandPalette from "@/components/command-palette";
 import { ToastProvider } from "@/components/toast";
 import ConsoleArt from "@/components/console-art";
 import MatrixRain from "@/components/matrix-rain";
+import CrtTerminal from "@/components/crt-terminal";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({
           <KonamiEasterEgg />
           <CommandPalette />
           <MatrixRain />
+          <CrtTerminal />
           <Sidebar />
           <main className="flex-1 min-w-0">
             {children}
