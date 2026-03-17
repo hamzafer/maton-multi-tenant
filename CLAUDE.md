@@ -26,16 +26,16 @@ One `MATON_API_KEY` (server-side only) manages OAuth connections for all users. 
 ### Data Flow
 
 1. User enters email → navigates to `/dashboard?email=...`
-2. Clicks Connect on an app → `POST /api/maton/connect` creates a Maton connection, saves to `data/users.json`, returns OAuth URL
+2. Clicks Connect on an app → `POST /api/maton/connect` creates a Maton connection, saves to Vercel Blob (or `data/users.json` locally), returns OAuth URL
 3. User completes OAuth in new tab → connection status changes to ACTIVE on Maton's side
 4. Dashboard detects via polling (`ConnectionStatus` component, 3s interval) + `visibilitychange` listener
-5. Gateway calls go through `lib/gateway.ts` → `matonFetchWithMeta()` which logs to `data/activity.json`
+5. Gateway calls go through `lib/gateway.ts` → `matonFetchWithMeta()` which logs to Vercel Blob (or `data/activity.json` locally)
 
 ### Server-Side Libraries (`lib/`)
 
 - **`maton.ts`** — Maton API client. `matonFetch` for control plane, `matonFetchWithMeta` returns `{ data, statusCode, responseTimeMs }` for gateway calls.
-- **`store.ts`** — JSON file CRUD for `data/users.json`. Multi-connection model: `email → { connections: { [app]: record } }`. Has lazy migration from old flat format.
-- **`activity-store.ts`** — Append-only log to `data/activity.json`, FIFO capped at 1000 entries.
+- **`store.ts`** — Async CRUD for user connections. Uses Vercel Blob (`@vercel/blob`) when `BLOB_READ_WRITE_TOKEN` is set, falls back to `data/users.json` locally. Model: `email → { connections: { [app]: record } }`. All exported functions are async.
+- **`activity-store.ts`** — Async append-only log, FIFO capped at 1000 entries. Same Blob/filesystem dual backend as `store.ts`.
 - **`gateway.ts`** — Wraps `matonFetchWithMeta` with `Maton-Connection` header and auto-logs activity.
 - **`apps.ts`** — Registry of supported apps (slug, name, icon SVG path, color).
 
@@ -53,6 +53,10 @@ All Maton API calls are server-side (API key never exposed to client).
 - **Stale connections:** The user route auto-cleans entries where Maton returns 404. The connect route falls through to create new if existing connection is gone.
 - **`POST /connections` returns only `{ connection_id }`**, not the full object. Always follow up with `GET /connections/{id}`.
 
+### Middleware
+
+Basic Auth via `middleware.ts`. Protects `/admin`, `/activity`, `/store`, and `/api/maton/*`. Dashboard (`/dashboard`) and landing page (`/`) are public. Credentials from `BASIC_AUTH_USER` and `BASIC_AUTH_PASSWORD` env vars.
+
 ### Styling
 
-Tailwind CSS v4 with `@theme` block in `globals.css`. Dark theme with emerald accent (`--color-accent: #34d399`). Fonts: DM Sans + JetBrains Mono. Custom classes: `.bg-grid`, `.card-glow`, `.animate-fade-up`.
+Tailwind CSS v4 with `@theme` block in `globals.css`. Dark theme with emerald accent (`--color-accent: #34d399`). Fonts: DM Sans + JetBrains Mono. Key custom classes: `.glass-card`, `.bg-grid`, `.bg-mesh`, `.app-card`, `.btn-press`, `.noise-overlay`, `.skeleton-bone`, `.animate-fade-up`. Layout uses a collapsible `Sidebar` component.

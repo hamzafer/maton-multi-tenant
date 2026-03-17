@@ -40,3 +40,6 @@ Open [http://localhost:3000](http://localhost:3000).
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `MATON_API_KEY` | Yes | Your Maton API key. Never exposed to the client. |
+| `BASIC_AUTH_USER` | No | Username for Basic Auth on protected pages (Admin, Activity, Store). |
+| `BASIC_AUTH_PASSWORD` | No | Password for Basic Auth. If either auth var is unset, auth is disabled. |
+| `BLOB_READ_WRITE_TOKEN` | No | Vercel Blob token for persistent storage. Auto-injected on Vercel. For local dev, run `vercel env pull` to get it. Without it, the app uses `data/*.json` files. |

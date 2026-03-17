@@ -2,24 +2,28 @@
 
 ```
 maton-test/
-├── .env.local                          # MATON_API_KEY (git-ignored)
+├── .env.local                          # API keys + auth credentials (git-ignored)
+├── middleware.ts                       # Basic Auth for protected routes
 ├── data/
-│   ├── users.json                      # User → connections mapping
-│   └── activity.json                   # API call activity log
+│   ├── users.json                      # User → connections mapping (local dev only)
+│   └── activity.json                   # API call activity log (local dev only)
 │
 ├── lib/
 │   ├── maton.ts                        # Server-side Maton API client
-│   ├── store.ts                        # User/connection JSON file store
-│   ├── activity-store.ts               # Activity log JSON file store
+│   ├── store.ts                        # User/connection store (Vercel Blob + local fallback)
+│   ├── activity-store.ts               # Activity log store (Vercel Blob + local fallback)
 │   ├── apps.ts                         # App registry (slug, name, icon, color)
 │   └── gateway.ts                      # Gateway call helper with activity logging
 │
 ├── app/
-│   ├── layout.tsx                      # Root layout with NavBar
-│   ├── page.tsx                        # Landing page (email input)
-│   ├── dashboard/page.tsx              # Multi-app connection grid + demo actions
-│   ├── admin/page.tsx                  # Admin panel (all connections)
-│   ├── activity/page.tsx               # Activity log with chart
+│   ├── layout.tsx                      # Root layout with Sidebar
+│   ├── page.tsx                        # Landing page (orbital hero + email input)
+│   ├── not-found.tsx                   # Custom 404 page
+│   ├── opengraph-image.tsx             # Dynamic OG image for link previews
+│   ├── icon.svg                        # Favicon
+│   ├── dashboard/page.tsx              # Connection grid + demo actions + mini game
+│   ├── admin/page.tsx                  # Admin panel (all connections, clickable emails)
+│   ├── activity/page.tsx               # Analytics dashboard with charts
 │   ├── store/page.tsx                  # Raw JSON viewer
 │   └── api/maton/
 │       ├── connect/route.ts            # POST — create connection for user+app
@@ -37,9 +41,12 @@ maton-test/
 │           └── github/route.ts         # GET — list repositories
 │
 └── components/
-    ├── nav-bar.tsx                     # Top navigation (Dashboard, Admin, Activity, {})
+    ├── sidebar.tsx                     # Collapsible sidebar navigation
+    ├── nav-bar.tsx                     # Top navigation (legacy, still available)
     ├── app-card.tsx                    # App card in the connection grid
     ├── connection-status.tsx           # OAuth polling UI (pending state)
+    ├── empty-state.tsx                 # Illustrated empty states for all pages
+    ├── skeleton.tsx                    # Shimmer loading skeletons
     ├── connect-button.tsx              # (legacy, used in v1)
     ├── sheet-reader.tsx                # Google Sheets query form + table
     ├── slack-sender.tsx                # Slack message sender form

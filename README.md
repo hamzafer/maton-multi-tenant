@@ -6,8 +6,16 @@ Multi-user app that connects to 100+ APIs through [Maton](https://maton.ai)'s OA
 
 ```bash
 npm install
-echo "MATON_API_KEY=your-key" > .env.local
+cp .env.local.example .env.local  # then fill in your keys
 npm run dev
+```
+
+Create `.env.local`:
+
+```
+MATON_API_KEY=your-maton-api-key
+BASIC_AUTH_USER=admin
+BASIC_AUTH_PASSWORD=your-password
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -27,6 +35,8 @@ All API calls go through Maton's gateway (`gateway.maton.ai`), which injects the
 
 The main user view. Shows 5 app cards — each can be independently connected/disconnected.
 
+Visiting `/dashboard` without an email shows a **"Connect the APIs"** mini game — link service nodes together, then enter your email to continue.
+
 **Connected apps** show a demo action when clicked:
 
 | App | Demo Action |
@@ -37,17 +47,25 @@ The main user view. Shows 5 app cards — each can be independently connected/di
 | Notion | Lists all databases in your workspace |
 | GitHub | Lists your 10 most recently updated repos |
 
-### Admin (`/admin`)
+### Admin (`/admin`) — protected
 
-Shows all connections across all users in a single table. Displays user avatars and emails from OAuth metadata. Delete any connection. Auto-refreshes every 10 seconds.
+Shows all connections across all users in a single table. Displays user avatars and emails from OAuth metadata. Click an email to jump to that user's dashboard. Delete any connection. Auto-refreshes every 10 seconds.
 
-### Activity Log (`/activity`)
+### Activity Log (`/activity`) — protected
 
-Every API call made through the gateway is logged. Shows a response time bar chart and a filterable table with timestamp, app, method, endpoint, status code, and response time. Filter by app. Auto-refreshes every 5 seconds.
+Analytics dashboard for gateway API calls. Features:
 
-### Raw Store (`/store`)
+- **Summary cards**: total calls with method distribution, avg response time with p95/min/max, success rate with circular progress ring, per-service breakdown
+- **Response time timeline**: gradient bar chart with hover tooltips
+- **Request log table**: color-coded method pills, status badges, per-row latency bars
 
-Live view of the raw JSON data files (`users.json` and `activity.json`). Toggle between tabs. Auto-refreshes every 3 seconds. Useful for debugging.
+Filterable by app. Auto-refreshes every 5 seconds.
+
+### Raw Store (`/store`) — protected
+
+Live view of the store data (`users.json` and `activity.json`). Toggle between tabs. Auto-refreshes every 3 seconds. Useful for debugging.
+
+> Pages marked **protected** require Basic Auth (configured via `BASIC_AUTH_USER` / `BASIC_AUTH_PASSWORD` env vars).
 
 ## Example: Connect Google Sheets and Read Data
 
@@ -76,9 +94,9 @@ Live view of the raw JSON data files (`users.json` and `activity.json`). Toggle 
 ## Tech Stack
 
 - **Next.js 16** (App Router, TypeScript)
-- **Tailwind CSS v4**
+- **Tailwind CSS v4** — glass morphism dark theme
 - **Maton API** — OAuth connection management + API gateway
-- **JSON file storage** — `data/users.json` and `data/activity.json`
+- **Vercel Blob** — persistent storage on Vercel (falls back to local JSON files in dev)
 
 ## API Key
 
