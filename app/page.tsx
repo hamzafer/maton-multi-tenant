@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Typewriter from "@/components/typewriter";
 
 const ORBIT_ICONS = [
   { label: "Sheets", color: "#34A853", delay: "0s", d: "M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z" },
@@ -92,7 +93,13 @@ export default function Home() {
 
             <h2 className="text-[32px] lg:text-[38px] font-bold tracking-tight text-text-primary leading-[1.1] mb-4">
               One key.<br />
-              <span className="text-accent">Every API.</span>
+              <Typewriter
+                phrases={["Every API.", "Google Sheets.", "Slack.", "Gmail.", "Notion.", "GitHub.", "Every API."]}
+                className="text-accent"
+                typingSpeed={70}
+                deletingSpeed={35}
+                pauseDuration={1800}
+              />
             </h2>
             <p className="text-[15px] text-text-secondary leading-relaxed mb-8">
               Connect your users to 100+ services through a single OAuth gateway. Sheets, Slack, Gmail, Notion, GitHub — managed for you.
