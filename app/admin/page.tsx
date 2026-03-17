@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getAppConfig } from "@/lib/apps";
 import EmptyState from "@/components/empty-state";
 import NumberTicker from "@/components/number-ticker";
+import SpotlightTable from "@/components/spotlight-table";
 import { AdminSkeleton } from "@/components/skeleton";
 
 interface Connection {
@@ -94,7 +95,7 @@ export default function AdminPage() {
         </div>
 
         {/* Table */}
-        <div className="animate-fade-up-delay-2 glass-card rounded-2xl overflow-hidden">
+        <SpotlightTable className="animate-fade-up-delay-2 glass-card rounded-2xl overflow-hidden">
           {/* Table header bar */}
           <div className="px-4 py-2.5 border-b border-[rgba(255,255,255,0.04)] flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -203,7 +204,7 @@ export default function AdminPage() {
             <span className="text-[10px] text-text-muted">{connections.length} connections</span>
             <span className="text-[10px] text-text-muted">Refreshes every 10s</span>
           </div>
-        </div>
+        </SpotlightTable>
         </>
         )}
       </div>
