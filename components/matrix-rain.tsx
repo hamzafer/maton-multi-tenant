@@ -21,7 +21,7 @@ export default function MatrixRain() {
   const [active, setActive] = useState(false);
   const [fading, setFading] = useState(false);
   const bufferRef = useRef("");
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const animRef = useRef<number>(0);
 
   // Listen for "matrix" typed anywhere
