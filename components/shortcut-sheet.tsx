@@ -42,6 +42,7 @@ const CATEGORIES: Category[] = [
       { keys: ["Hover"], label: "Form Card", description: "Holographic 3D tilt effect" },
       { keys: ["Click"], label: "Heartbeat Bar", description: "Expand system vital signs" },
       { keys: ["🎵"], label: "Ambient Toggle", description: "Generative drone music in sidebar" },
+      { keys: ["Near"], label: "Magnetic Buttons", description: "Buttons pull toward your cursor" },
     ],
   },
   {
