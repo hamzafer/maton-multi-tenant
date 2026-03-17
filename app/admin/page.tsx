@@ -7,6 +7,7 @@ import NumberTicker from "@/components/number-ticker";
 import SpotlightTable from "@/components/spotlight-table";
 import { AdminSkeleton } from "@/components/skeleton";
 import ScrambleText from "@/components/scramble-text";
+import RadarSweep from "@/components/radar-sweep";
 
 interface Connection {
   connection_id: string;
@@ -72,9 +73,28 @@ export default function AdminPage() {
     <div className="min-h-screen bg-grid">
       <div className="bg-mesh" />
       <div className="max-w-5xl mx-auto px-4 py-8 relative z-10">
-        <div className="animate-fade-up mb-8">
-          <h1 className="text-[20px] font-semibold tracking-tight text-text-primary"><ScrambleText text="Admin" scrambleOnMount /></h1>
-          <p className="text-[13px] text-text-muted">All connections across all users</p>
+        <div className="animate-fade-up mb-8 flex items-center gap-6">
+          <div className="hidden sm:block shrink-0">
+            <RadarSweep connectionCount={connections.length} size={140} />
+          </div>
+          <div>
+            <h1 className="text-[20px] font-semibold tracking-tight text-text-primary"><ScrambleText text="Admin" scrambleOnMount /></h1>
+            <p className="text-[13px] text-text-muted">All connections across all users</p>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="text-[10px] font-mono text-accent/50 uppercase tracking-widest">Scanning</span>
+              <span className="flex gap-[3px]">
+                {[0, 1, 2].map((i) => (
+                  <span
+                    key={i}
+                    className="w-1 h-1 rounded-full bg-accent"
+                    style={{
+                      animation: `fadeIn 1s ease ${i * 0.3}s infinite alternate`,
+                    }}
+                  />
+                ))}
+              </span>
+            </div>
+          </div>
         </div>
 
         {loading ? (
