@@ -14,6 +14,7 @@ import ShortcutSheet from "@/components/shortcut-sheet";
 import BootSplash from "@/components/boot-splash";
 import MagneticField from "@/components/magnetic-field";
 import ContextMenu from "@/components/context-menu";
+import DynamicFavicon from "@/components/dynamic-favicon";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="noise-overlay flex min-h-screen">
         <ToastProvider>
           <BootSplash />
+          <DynamicFavicon />
           <ConsoleArt />
           <ParticleConstellation />
           <ShootingStars />
