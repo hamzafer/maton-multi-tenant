@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import ScrambleText from "@/components/scramble-text";
+import Pong404 from "@/components/pong-404";
 
 function GlitchText({ text }: { text: string }) {
   const [display, setDisplay] = useState(text);
@@ -105,6 +106,19 @@ function FloatingNodes() {
 }
 
 export default function NotFound() {
+  const [showPong, setShowPong] = useState(false);
+
+  if (showPong) {
+    return (
+      <div className="min-h-screen bg-grid flex flex-col items-center justify-center relative overflow-hidden px-4">
+        <div className="bg-mesh" />
+        <div className="relative z-10 w-full max-w-lg">
+          <Pong404 onClose={() => setShowPong(false)} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-grid flex flex-col items-center justify-center relative overflow-hidden">
       <div className="bg-mesh" />
@@ -120,15 +134,27 @@ export default function NotFound() {
           The API endpoint you requested doesn&apos;t exist in our gateway.
         </p>
 
-        <a
-          href="/"
-          className="inline-flex items-center gap-2 bg-accent/10 hover:bg-accent/15 border border-accent/20 hover:border-accent/30 text-accent text-[13px] font-medium px-5 py-2.5 rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(52,211,153,0.15)]"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-          </svg>
-          Return to gateway
-        </a>
+        <div className="flex flex-col items-center gap-3">
+          <a
+            href="/"
+            className="inline-flex items-center gap-2 bg-accent/10 hover:bg-accent/15 border border-accent/20 hover:border-accent/30 text-accent text-[13px] font-medium px-5 py-2.5 rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(52,211,153,0.15)]"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            Return to gateway
+          </a>
+
+          <button
+            onClick={() => setShowPong(true)}
+            className="text-[11px] text-text-muted hover:text-accent transition-colors flex items-center gap-1.5"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+            </svg>
+            or play Pong against the Firewall
+          </button>
+        </div>
       </div>
     </div>
   );
