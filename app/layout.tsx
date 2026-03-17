@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import Sidebar from "@/components/sidebar";
 import ParticleConstellation from "@/components/particles";
 import KonamiEasterEgg from "@/components/konami-easter-egg";
@@ -83,6 +84,7 @@ export default function RootLayout({
           <TypingTrail />
           <Screensaver />
         </ToastProvider>
+        <Analytics />
       </body>
     </html>
   );
