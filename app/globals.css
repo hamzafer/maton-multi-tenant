@@ -1683,3 +1683,111 @@ button, a, .app-card, .glass-card, .btn-press {
 .page-wipe-exit {
   animation: wipeExit 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+/* ═══════════════════════════════════════════
+   Achievement Notifications
+   ═══════════════════════════════════════════ */
+
+@keyframes achievementSlideIn {
+  from { opacity: 0; transform: translateX(40px) scale(0.9); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes achievementSlideOut {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to { opacity: 0; transform: translateX(40px) scale(0.9); }
+}
+@keyframes achievementShine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.achievement-stack {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.achievement-notif {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  min-width: 280px;
+  max-width: 340px;
+  background: rgba(10, 10, 14, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(52, 211, 153, 0.06);
+  animation: achievementSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  pointer-events: auto;
+}
+.achievement-notif-exit {
+  animation: achievementSlideOut 0.3s ease forwards;
+}
+
+.achievement-notif-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.3));
+}
+
+.achievement-notif-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.achievement-notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.achievement-notif-badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    #34d399 0%,
+    #6ee7b7 25%,
+    #fbbf24 50%,
+    #6ee7b7 75%,
+    #34d399 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: achievementShine 3s linear infinite;
+}
+
+.achievement-notif-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.achievement-notif-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.achievement-notif-desc {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
