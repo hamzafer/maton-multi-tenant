@@ -47,6 +47,7 @@ const CATEGORIES: Category[] = [
       { keys: ["Near"], label: "Magnetic Buttons", description: "Buttons pull toward your cursor" },
       { keys: ["Right", "Click"], label: "Context Menu", description: "Custom menu with quick actions" },
       { keys: ["Idle"], label: "Screensaver", description: "Lissajous curves after 45s idle" },
+      { keys: ["Dbl", "Click"], label: "Fireworks", description: "Launch a firework from any point" },
     ],
   },
   {

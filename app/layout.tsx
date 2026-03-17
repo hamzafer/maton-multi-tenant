@@ -25,6 +25,7 @@ import PageTransition from "@/components/page-transition";
 import AchievementSystem from "@/components/achievements";
 import CreditsRoll from "@/components/credits-roll";
 import CustomCursor from "@/components/custom-cursor";
+import Fireworks from "@/components/fireworks";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ export default function RootLayout({
           <ParticleConstellation />
           <ShootingStars />
           <ClickShockwave />
+          <Fireworks />
           <CursorGlow />
           <CustomCursor />
           <MagneticField />
