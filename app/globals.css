@@ -2405,3 +2405,76 @@ button, a, .app-card, .glass-card, .btn-press {
   color: rgba(255, 255, 255, 0.15);
   text-align: center;
 }
+
+/* ═══════════════════════════════════════════
+   Completionist Celebration
+   ═══════════════════════════════════════════ */
+
+@keyframes completionistGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+  50% { text-shadow: 0 0 40px rgba(251, 191, 36, 0.6), 0 0 80px rgba(251, 191, 36, 0.2); }
+}
+
+.completionist-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s ease;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+.completionist-fade {
+  opacity: 0;
+}
+
+.completionist-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.completionist-message {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.completionist-crown {
+  font-size: 48px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.5));
+  animation: screenBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+}
+
+.completionist-title {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #fbbf24;
+  animation: completionistGlow 2s ease-in-out infinite;
+  margin-bottom: 8px;
+}
+
+.completionist-subtitle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgba(251, 191, 36, 0.6);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.completionist-tagline {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 12px;
+}

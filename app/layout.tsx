@@ -29,6 +29,7 @@ import Fireworks from "@/components/fireworks";
 import TypingTrail from "@/components/typing-trail";
 import FocusMode from "@/components/focus-mode";
 import SoundBoard from "@/components/sound-board";
+import Completionist from "@/components/completionist";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -78,6 +79,7 @@ export default function RootLayout({
           <HeartbeatBar />
           <AchievementSystem />
           <CreditsRoll />
+          <Completionist />
           <TypingTrail />
           <Screensaver />
         </ToastProvider>
