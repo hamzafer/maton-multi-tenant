@@ -1791,3 +1791,76 @@ button, a, .app-card, .glass-card, .btn-press {
   color: var(--color-text-muted);
   margin-top: 1px;
 }
+
+/* ═══════════════════════════════════════════
+   Credits Roll (Star Wars Crawl)
+   ═══════════════════════════════════════════ */
+
+.credits-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99997;
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+  animation: fadeIn 0.5s ease;
+}
+
+.credits-perspective {
+  position: absolute;
+  inset: 0;
+  perspective: 350px;
+  overflow: hidden;
+}
+
+.credits-crawl {
+  position: absolute;
+  left: 50%;
+  width: min(600px, 85vw);
+  margin-left: min(-300px, -42.5vw);
+  text-align: center;
+  transform-origin: 50% 100%;
+  transform: rotateX(20deg);
+  will-change: transform;
+  padding-bottom: 200px;
+}
+
+.credits-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #34d399;
+  text-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
+  margin: 8px 0 16px;
+}
+
+.credits-line {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(52, 211, 153, 0.65);
+}
+
+.credits-separator {
+  font-size: 10px;
+  color: rgba(52, 211, 153, 0.15);
+  margin: 24px 0;
+  letter-spacing: 2px;
+}
+
+.credits-spacer {
+  height: 20px;
+}
+
+.credits-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  z-index: 2;
+}
