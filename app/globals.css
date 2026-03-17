@@ -164,20 +164,22 @@ input:focus, textarea:focus {
 .bg-mesh::before {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, #34d399 0%, transparent 70%);
+  background: radial-gradient(circle, var(--time-orb1, #34d399) 0%, transparent 70%);
   top: -15%;
   left: -10%;
   opacity: 0.06;
   animation: meshFloat 25s ease-in-out infinite;
+  transition: background 10s ease;
 }
 .bg-mesh::after {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #818cf8 0%, transparent 70%);
+  background: radial-gradient(circle, var(--time-orb2, #818cf8) 0%, transparent 70%);
   bottom: -15%;
   right: -10%;
   opacity: 0.04;
   animation: meshFloat2 30s ease-in-out infinite;
+  transition: background 10s ease;
 }
 
 /* Third orb via extra element */
@@ -187,13 +189,14 @@ input:focus, textarea:focus {
   height: 400px;
   border-radius: 50%;
   filter: blur(120px);
-  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+  background: radial-gradient(circle, var(--time-orb3, #06b6d4) 0%, transparent 70%);
   top: 40%;
   left: 50%;
   opacity: 0.03;
   pointer-events: none;
   z-index: 0;
   animation: meshFloat 20s ease-in-out infinite reverse;
+  transition: background 10s ease;
 }
 
 /* Orbit animation for landing page */
