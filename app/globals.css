@@ -486,6 +486,18 @@ html {
   opacity: 1;
 }
 
+/* Magnetic field effect */
+.magnetic-active {
+  transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  will-change: transform;
+}
+/* Spring-back when released — slightly slower, bouncier */
+button, a, .app-card, .glass-card, .btn-press {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+}
+
 /* Scramble text effect */
 .scramble-text {
   display: inline-block;
