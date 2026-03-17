@@ -6,6 +6,7 @@ import EmptyState from "@/components/empty-state";
 import NumberTicker from "@/components/number-ticker";
 import SpotlightTable from "@/components/spotlight-table";
 import { AdminSkeleton } from "@/components/skeleton";
+import ScrambleText from "@/components/scramble-text";
 
 interface Connection {
   connection_id: string;
@@ -72,7 +73,7 @@ export default function AdminPage() {
       <div className="bg-mesh" />
       <div className="max-w-5xl mx-auto px-4 py-8 relative z-10">
         <div className="animate-fade-up mb-8">
-          <h1 className="text-[20px] font-semibold tracking-tight text-text-primary">Admin</h1>
+          <h1 className="text-[20px] font-semibold tracking-tight text-text-primary"><ScrambleText text="Admin" scrambleOnMount /></h1>
           <p className="text-[13px] text-text-muted">All connections across all users</p>
         </div>
 

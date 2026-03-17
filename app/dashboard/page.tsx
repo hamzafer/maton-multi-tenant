@@ -15,6 +15,7 @@ import { DashboardSkeleton } from "@/components/skeleton";
 import OrbitalSpinner from "@/components/orbital-spinner";
 import { useConfetti } from "@/components/confetti";
 import { useToast } from "@/components/toast";
+import ScrambleText from "@/components/scramble-text";
 
 // --- "Connect the APIs" mini game ---
 const GAME_NODES = [
@@ -88,7 +89,7 @@ function ConnectTheAPIsGame() {
         {/* Title */}
         <div className="text-center mb-6 animate-fade-up">
           <h2 className="text-[22px] font-bold tracking-tight text-text-primary mb-1">
-            Connect the APIs
+            <ScrambleText text="Connect the APIs" scrambleOnMount speed={22} />
           </h2>
           <p className="text-[13px] text-text-muted">
             Click two services to link them together
@@ -441,7 +442,7 @@ function DashboardContent() {
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="animate-fade-up mb-8">
-          <h1 className="text-[20px] font-semibold tracking-tight text-text-primary">Dashboard</h1>
+          <h1 className="text-[20px] font-semibold tracking-tight text-text-primary"><ScrambleText text="Dashboard" scrambleOnMount /></h1>
           <p className="text-[13px] text-text-muted font-mono">{email}</p>
         </div>
 
