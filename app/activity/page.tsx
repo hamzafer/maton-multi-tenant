@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import EmptyState from "@/components/empty-state";
 import { ActivitySkeleton } from "@/components/skeleton";
+import Reveal from "@/components/reveal";
 
 interface ActivityEntry {
   id: string;
@@ -210,9 +211,9 @@ export default function ActivityPage() {
         ) : analytics && (
           <>
             {/* Analytics Cards Row */}
-            <div className="animate-fade-up-delay-1 grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
               {/* Total Calls */}
-              <div className="glass-card rounded-2xl p-5 group">
+              <Reveal delay={0} direction="up"><div className="glass-card rounded-2xl p-5 group">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <p className="text-[10px] text-text-muted uppercase tracking-widest mb-1.5">Total Calls</p>
@@ -229,10 +230,10 @@ export default function ActivityPage() {
                   { label: "POST", value: analytics.posts, color: "#fbbf24" },
                   ...(analytics.others > 0 ? [{ label: "Other", value: analytics.others, color: "#9494a8" }] : []),
                 ]} />
-              </div>
+              </div></Reveal>
 
               {/* Avg Response Time */}
-              <div className="glass-card rounded-2xl p-5 group">
+              <Reveal delay={100} direction="up"><div className="glass-card rounded-2xl p-5 group">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <p className="text-[10px] text-text-muted uppercase tracking-widest mb-1.5">Avg Response</p>
@@ -263,10 +264,10 @@ export default function ActivityPage() {
                     <span className="font-mono text-danger">{analytics.slowest}ms</span>
                   </div>
                 </div>
-              </div>
+              </div></Reveal>
 
               {/* Success Rate */}
-              <div className="glass-card rounded-2xl p-5 group">
+              <Reveal delay={200} direction="up"><div className="glass-card rounded-2xl p-5 group">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <p className="text-[10px] text-text-muted uppercase tracking-widest mb-1.5">Success Rate</p>
@@ -294,10 +295,10 @@ export default function ActivityPage() {
                     </div>
                   )}
                 </div>
-              </div>
+              </div></Reveal>
 
               {/* App Breakdown */}
-              <div className="glass-card rounded-2xl p-5 group">
+              <Reveal delay={300} direction="up"><div className="glass-card rounded-2xl p-5 group">
                 <p className="text-[10px] text-text-muted uppercase tracking-widest mb-3">By Service</p>
                 <div className="space-y-2.5">
                   {analytics.appBreakdown.slice(0, 4).map((item) => (
@@ -325,11 +326,11 @@ export default function ActivityPage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div></Reveal>
             </div>
 
             {/* Response Time Timeline */}
-            <div className="animate-fade-up-delay-2 glass-card rounded-2xl p-5 mb-6">
+            <Reveal delay={100}><div className="glass-card rounded-2xl p-5 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="text-accent/50">
@@ -389,10 +390,10 @@ export default function ActivityPage() {
                   <span className="text-[9px] text-text-muted font-mono">recent</span>
                 </div>
               </div>
-            </div>
+            </div></Reveal>
 
             {/* Request Log Table */}
-            <div className="animate-fade-up-delay-3 glass-card rounded-2xl overflow-hidden">
+            <Reveal delay={200}><div className="glass-card rounded-2xl overflow-hidden">
               {/* Table header bar */}
               <div className="px-5 py-3 border-b border-[rgba(255,255,255,0.04)] flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -495,7 +496,7 @@ export default function ActivityPage() {
                   <span className="text-[10px] text-text-muted">Refreshes every 5s</span>
                 </div>
               </div>
-            </div>
+            </div></Reveal>
           </>
         )}
       </div>
