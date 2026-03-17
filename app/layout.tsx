@@ -26,6 +26,7 @@ import AchievementSystem from "@/components/achievements";
 import CreditsRoll from "@/components/credits-roll";
 import CustomCursor from "@/components/custom-cursor";
 import Fireworks from "@/components/fireworks";
+import TypingTrail from "@/components/typing-trail";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -73,6 +74,7 @@ export default function RootLayout({
           <HeartbeatBar />
           <AchievementSystem />
           <CreditsRoll />
+          <TypingTrail />
           <Screensaver />
         </ToastProvider>
       </body>
