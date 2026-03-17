@@ -248,6 +248,22 @@ input:focus, textarea:focus {
     0 12px 40px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255,255,255,0.04);
 }
+/* Active app card — breathing border glow */
+@keyframes cardBreathe {
+  0%, 100% { box-shadow: 0 0 0 1px var(--card-glow-color, rgba(52,211,153,0.1)), 0 0 15px var(--card-glow-color, rgba(52,211,153,0.04)); }
+  50% { box-shadow: 0 0 0 1px var(--card-glow-color, rgba(52,211,153,0.2)), 0 0 30px var(--card-glow-color, rgba(52,211,153,0.08)); }
+}
+@keyframes dataStream {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -24; }
+}
+.app-card-active {
+  animation: cardBreathe 3s ease-in-out infinite;
+}
+.app-card-active .data-stream-line {
+  animation: dataStream 1.2s linear infinite;
+}
+
 .app-card:active {
   transform: translateY(0px);
 }

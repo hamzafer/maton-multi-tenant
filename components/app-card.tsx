@@ -25,9 +25,10 @@ export default function AppCard({ app, status, onConnect, onDisconnect, onSelect
         selected
           ? "border-accent/30 bg-accent/5 shadow-[0_0_30px_rgba(52,211,153,0.08)] -translate-y-0.5"
           : isConnected
-          ? "border-border-default bg-surface-raised cursor-pointer"
+          ? "app-card-active border-border-default bg-surface-raised cursor-pointer"
           : "border-border-subtle bg-surface-raised"
       }`}
+      style={isConnected ? { "--card-glow-color": `${app.color}20` } as React.CSSProperties : undefined}
     >
       {/* Hover glow — colored by app */}
       <div
@@ -36,6 +37,23 @@ export default function AppCard({ app, status, onConnect, onDisconnect, onSelect
           boxShadow: `0 4px 30px ${app.color}08, 0 0 60px ${app.color}04`,
         }}
       />
+
+      {/* Data stream — animated dashes flowing along the card border when active */}
+      {isConnected && (
+        <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-xl" style={{ zIndex: 0 }}>
+          <rect
+            x="1" y="1"
+            width="calc(100% - 2px)" height="calc(100% - 2px)"
+            rx="11" ry="11"
+            fill="none"
+            stroke={app.color}
+            strokeWidth="1"
+            strokeDasharray="4 20"
+            opacity="0.2"
+            className="data-stream-line"
+          />
+        </svg>
+      )}
 
       {/* App icon */}
       <div className="flex items-center justify-between mb-3">
