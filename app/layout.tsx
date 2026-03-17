@@ -9,6 +9,7 @@ import ConsoleArt from "@/components/console-art";
 import MatrixRain from "@/components/matrix-rain";
 import CrtTerminal from "@/components/crt-terminal";
 import HeartbeatBar from "@/components/heartbeat-bar";
+import ShootingStars from "@/components/shooting-stars";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
         <ToastProvider>
           <ConsoleArt />
           <ParticleConstellation />
+          <ShootingStars />
           <CursorGlow />
           <KonamiEasterEgg />
           <CommandPalette />
