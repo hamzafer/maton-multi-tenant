@@ -1864,3 +1864,101 @@ button, a, .app-card, .glass-card, .btn-press {
   pointer-events: none;
   z-index: 2;
 }
+
+/* ═══════════════════════════════════════════
+   Custom Cursor
+   ═══════════════════════════════════════════ */
+
+/* Hide default cursor when custom is active */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.cursor-visible {
+  opacity: 1;
+}
+
+/* Dot — precise center point */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.5);
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease, background 0.2s ease;
+}
+
+/* Ring — lagging follower */
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(52, 211, 153, 0.3);
+  transition: width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              height 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              margin-left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              margin-top 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.2s ease,
+              background 0.2s ease;
+}
+
+/* Interactive mode — ring expands, dot brightens */
+.cursor-dot.cursor-interactive {
+  background: #6ee7b7;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.7);
+}
+.cursor-ring.cursor-interactive {
+  width: 48px;
+  height: 48px;
+  margin-left: -24px;
+  margin-top: -24px;
+  border-color: rgba(52, 211, 153, 0.5);
+  background: rgba(52, 211, 153, 0.04);
+}
+
+/* Text mode — dot becomes thin line */
+.cursor-dot.cursor-text {
+  width: 2px;
+  height: 18px;
+  margin-left: -1px;
+  margin-top: -9px;
+  border-radius: 1px;
+  background: rgba(52, 211, 153, 0.7);
+  box-shadow: none;
+}
+.cursor-ring.cursor-text {
+  width: 0;
+  height: 0;
+  margin-left: 0;
+  margin-top: 0;
+  border-color: transparent;
+}
+
+/* Click state — shrink both */
+.cursor-dot.cursor-clicking {
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  margin-top: -2px;
+}
+.cursor-ring.cursor-clicking {
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  margin-top: -12px;
+  border-color: rgba(52, 211, 153, 0.6);
+}
