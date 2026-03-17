@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { playHeartbeat } from "@/lib/sounds";
+import { unlockAchievement } from "@/components/achievements";
 
 // ECG waveform shape — one heartbeat cycle
 // Returns y offset (0 = baseline) for a given t in [0, 1]
@@ -146,7 +147,7 @@ export default function HeartbeatBar() {
     <div className="heartbeat-bar" ref={containerRef}>
       <div
         className={`heartbeat-bar-inner ${expanded ? "heartbeat-expanded" : ""}`}
-        onClick={() => { playHeartbeat(); setExpanded((p) => !p); }}
+        onClick={() => { playHeartbeat(); setExpanded((p) => { if (!p) unlockAchievement("heartbeat"); return !p; }); }}
       >
         {/* Minimized: just the heartbeat line + pulse dot */}
         <div className="heartbeat-row">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
+import { unlockAchievement } from "@/components/achievements";
 
 // Generates an ambient generative drone using Web Audio API
 // Warm pad with slow-evolving harmonics — think Brian Eno meets UI
@@ -103,6 +104,7 @@ export default function AmbientToggle({ expanded }: { expanded: boolean }) {
       stopAmbient();
     } else {
       startAmbient();
+      unlockAchievement("ambient");
     }
     setPlaying(!playing);
   }

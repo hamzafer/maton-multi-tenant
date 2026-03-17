@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback, useState } from "react";
 import { playMatrixEnter } from "@/lib/sounds";
+import { unlockAchievement } from "@/components/achievements";
 
 // Characters: katakana + latin + digits + symbols for authentic Matrix feel
 const CHARS =
@@ -39,6 +40,7 @@ export default function MatrixRain() {
           setActive(true);
           setFading(false);
           playMatrixEnter();
+          unlockAchievement("matrix");
         }
       }
     }

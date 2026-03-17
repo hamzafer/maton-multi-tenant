@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { playClick, playNav } from "@/lib/sounds";
+import { unlockAchievement } from "@/components/achievements";
 
 interface Command {
   id: string;
@@ -101,7 +102,7 @@ function CommandPaletteInner() {
     function handleKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        setOpen((o) => !o);
+        setOpen((o) => { if (!o) unlockAchievement("palette"); return !o; });
         setQuery("");
         setActiveIndex(0);
       }

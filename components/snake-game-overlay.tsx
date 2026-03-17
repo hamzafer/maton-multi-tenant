@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { playSuccess, playError, playClick } from "@/lib/sounds";
+import { unlockAchievement } from "@/components/achievements";
 
 const CELL = 16;
 const SPEED_MS = 100;
@@ -44,6 +45,7 @@ export default function SnakeGameOverlay() {
         bufferRef.current = "";
         playClick();
         setOpen(true);
+        unlockAchievement("snake");
         setGameOver(false);
         setScore(0);
         scoreRef.current = 0;

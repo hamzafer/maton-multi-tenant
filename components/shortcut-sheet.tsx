@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { playClick } from "@/lib/sounds";
+import { unlockAchievement } from "@/components/achievements";
 
 interface Shortcut {
   keys: string[];
@@ -79,7 +80,7 @@ export default function ShortcutSheet() {
       if (e.key === "?" && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
         playClick();
-        setOpen((p) => !p);
+        setOpen((p) => { if (!p) unlockAchievement("shortcuts"); return !p; });
       }
       if (e.key === "Escape" && open) {
         setOpen(false);

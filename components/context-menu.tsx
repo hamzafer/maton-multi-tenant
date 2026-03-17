@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { playClick } from "@/lib/sounds";
+import { unlockAchievement } from "@/components/achievements";
 
 interface MenuItem {
   label: string;
@@ -52,6 +53,7 @@ export default function ContextMenu() {
       const y = Math.min(e.clientY, window.innerHeight - 340);
       setPos({ x, y });
       setOpen(true);
+      unlockAchievement("context");
     }
 
     function handleClick() {

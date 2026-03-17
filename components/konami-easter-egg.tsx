@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { unlockAchievement } from "@/components/achievements";
 
 const KONAMI = [
   "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
@@ -28,6 +29,7 @@ export default function KonamiEasterEgg() {
         inputRef.current.every((k, i) => k === KONAMI[i])
       ) {
         setActive(true);
+        unlockAchievement("konami");
         inputRef.current = [];
       }
     }

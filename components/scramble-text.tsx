@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { playScramble } from "@/lib/sounds";
+import { unlockAchievement } from "@/components/achievements";
 
 const GLYPHS = "アイウエオカキクケコ01!@#$%&=+<>{}[]ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -34,6 +35,7 @@ export default function ScrambleText({
     setScrambling(true);
     onScrambleStart?.();
     playScramble();
+    unlockAchievement("scramble");
 
     const original = text;
     const length = original.length;

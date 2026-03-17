@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { playCrtOpen, playCrtKey } from "@/lib/sounds";
+import { unlockAchievement } from "@/components/achievements";
 
 interface Line {
   text: string;
@@ -173,6 +174,7 @@ export default function CrtTerminal() {
             setBooting(true);
             setLines([]);
             playCrtOpen();
+            unlockAchievement("terminal");
             return true;
           }
           return false;
