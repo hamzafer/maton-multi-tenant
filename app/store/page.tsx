@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import OrbitalSpinner from "@/components/orbital-spinner";
 
 export default function StorePage() {
   const [storeData, setStoreData] = useState<string>("");
@@ -64,7 +65,7 @@ export default function StorePage() {
         <div className="animate-fade-up-delay-1 card-glow bg-surface-raised border border-border-subtle rounded-2xl overflow-hidden">
           {loading ? (
             <div className="flex items-center justify-center py-16">
-              <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+              <OrbitalSpinner size={48} />
             </div>
           ) : (
             <pre className="p-6 text-[12px] font-mono text-text-secondary leading-relaxed overflow-x-auto max-h-[70vh] overflow-y-auto">

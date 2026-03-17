@@ -12,6 +12,7 @@ import NotionViewer from "@/components/notion-viewer";
 import GithubViewer from "@/components/github-viewer";
 import EmptyState from "@/components/empty-state";
 import { DashboardSkeleton } from "@/components/skeleton";
+import OrbitalSpinner from "@/components/orbital-spinner";
 
 // --- "Connect the APIs" mini game ---
 const GAME_NODES = [
@@ -498,7 +499,7 @@ export default function Dashboard() {
     <Suspense
       fallback={
         <div className="min-h-screen bg-grid flex items-center justify-center">
-          <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+          <OrbitalSpinner size={48} />
         </div>
       }
     >
