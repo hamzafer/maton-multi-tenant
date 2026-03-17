@@ -5,6 +5,7 @@ import KonamiEasterEgg from "@/components/konami-easter-egg";
 import CursorGlow from "@/components/cursor-glow";
 import CommandPalette from "@/components/command-palette";
 import { ToastProvider } from "@/components/toast";
+import ConsoleArt from "@/components/console-art";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="noise-overlay flex min-h-screen">
         <ToastProvider>
+          <ConsoleArt />
           <ParticleConstellation />
           <CursorGlow />
           <KonamiEasterEgg />
