@@ -3,6 +3,7 @@ import Sidebar from "@/components/sidebar";
 import ParticleConstellation from "@/components/particles";
 import KonamiEasterEgg from "@/components/konami-easter-egg";
 import CursorGlow from "@/components/cursor-glow";
+import CommandPalette from "@/components/command-palette";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ParticleConstellation />
         <CursorGlow />
         <KonamiEasterEgg />
+        <CommandPalette />
         <Sidebar />
         <main className="flex-1 min-w-0">
           {children}
