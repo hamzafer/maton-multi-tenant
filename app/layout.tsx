@@ -23,6 +23,7 @@ import ScreenShake from "@/components/screen-shake";
 import TimeTheme from "@/components/time-theme";
 import PageTransition from "@/components/page-transition";
 import AchievementSystem from "@/components/achievements";
+import CreditsRoll from "@/components/credits-roll";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -67,6 +68,7 @@ export default function RootLayout({
           </main>
           <HeartbeatBar />
           <AchievementSystem />
+          <CreditsRoll />
           <Screensaver />
         </ToastProvider>
       </body>

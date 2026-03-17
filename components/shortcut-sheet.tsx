@@ -32,6 +32,7 @@ const CATEGORIES: Category[] = [
     shortcuts: [
       { keys: ["`"], label: "CRT Terminal", description: "Retro hacker terminal with commands" },
       { keys: ["m", "a", "t", "r", "i", "x"], label: "Matrix Rain", description: "Digital rain cascade" },
+      { keys: ["c", "r", "e", "d", "i", "t", "s"], label: "Credits Roll", description: "Star Wars-style credits crawl" },
       { keys: ["↑", "↑", "↓", "↓", "←", "→", "←", "→", "B", "A"], label: "Konami Code", description: "The classic secret" },
     ],
   },
