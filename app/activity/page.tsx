@@ -7,6 +7,7 @@ import Reveal from "@/components/reveal";
 import NumberTicker from "@/components/number-ticker";
 import WaveDivider from "@/components/wave-divider";
 import ScrambleText from "@/components/scramble-text";
+import HexGrid from "@/components/hex-grid";
 
 interface ActivityEntry {
   id: string;
@@ -165,7 +166,8 @@ export default function ActivityPage() {
   };
 
   return (
-    <div className="min-h-screen bg-grid">
+    <div className="min-h-screen">
+      <HexGrid />
       <div className="bg-mesh" />
       <div className="max-w-6xl mx-auto px-4 py-8 relative z-10">
         {/* Header */}

@@ -2005,6 +2005,21 @@ button, a, .app-card, .glass-card, .btn-press {
 }
 
 /* ═══════════════════════════════════════════
+   Hex Grid Background
+   ═══════════════════════════════════════════ */
+
+.hex-grid-svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hex-cell {
+  transition: opacity 0.8s ease;
+}
+
+/* ═══════════════════════════════════════════
    404 Pong Game
    ═══════════════════════════════════════════ */
 
