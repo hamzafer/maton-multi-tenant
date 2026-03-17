@@ -48,6 +48,8 @@ const COMMANDS: Record<string, (args: string[]) => Line[]> = {
     { text: "  cowsay <msg>  Moo", type: "output" },
     { text: "  clear         Clear terminal", type: "output" },
     { text: "  exit          Close terminal", type: "output" },
+    { text: "", type: "output" },
+    { text: "  Tip: Press ? outside the terminal to see all secrets", type: "system" },
   ],
   ls: () => [
     { text: "drwxr-xr-x  api/", type: "output" },
