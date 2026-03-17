@@ -6,6 +6,7 @@ import Typewriter from "@/components/typewriter";
 import RippleButton from "@/components/ripple-button";
 import WaveDivider from "@/components/wave-divider";
 import TiltCard from "@/components/tilt-card";
+import ScrambleText from "@/components/scramble-text";
 
 const ORBIT_ICONS = [
   { label: "Sheets", color: "#34A853", delay: "0s", d: "M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z" },
@@ -91,11 +92,11 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6z" />
                 </svg>
               </div>
-              <p className="text-[11px] text-accent font-medium tracking-widest uppercase">Maton API Gateway</p>
+              <p className="text-[11px] text-accent font-medium tracking-widest uppercase"><ScrambleText text="Maton API Gateway" scrambleOnMount speed={20} /></p>
             </div>
 
             <h2 className="text-[32px] lg:text-[38px] font-bold tracking-tight text-text-primary leading-[1.1] mb-4">
-              One key.<br />
+              <ScrambleText text="One key." scrambleOnMount speed={25} /><br />
               <Typewriter
                 phrases={["Every API.", "Google Sheets.", "Slack.", "Gmail.", "Notion.", "GitHub.", "Every API."]}
                 className="text-accent"
