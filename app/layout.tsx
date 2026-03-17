@@ -21,6 +21,7 @@ import ScrollProgress from "@/components/scroll-progress";
 import SnakeGameOverlay from "@/components/snake-game-overlay";
 import ScreenShake from "@/components/screen-shake";
 import TimeTheme from "@/components/time-theme";
+import PageTransition from "@/components/page-transition";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -58,6 +59,7 @@ export default function RootLayout({
           <ContextMenu />
           <SnakeGameOverlay />
           <ScrollProgress />
+          <PageTransition />
           <Sidebar />
           <main className="flex-1 min-w-0 pb-14">
             {children}
