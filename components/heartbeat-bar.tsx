@@ -177,6 +177,11 @@ export default function HeartbeatBar() {
               <span className="heartbeat-stat-label">Requests</span>
               <span className="heartbeat-stat-value">{stats.requests}</span>
             </div>
+            <div className="heartbeat-stat-divider" />
+            <div className="heartbeat-stat">
+              <span className="heartbeat-stat-label">Secrets</span>
+              <span className="heartbeat-stat-value" style={{ fontSize: 10, opacity: 0.4 }}>Press ?</span>
+            </div>
           </div>
         )}
       </div>
