@@ -103,7 +103,31 @@ function SidebarInner() {
           <div className="mx-3 h-px bg-[rgba(255,255,255,0.05)]" />
 
           {/* Nav items */}
-          <nav className="flex-1 px-2 py-3 flex flex-col gap-0.5">
+          <nav className="flex-1 px-2 py-3 flex flex-col gap-0.5 relative">
+            {/* Sliding active indicator — single element that moves between items */}
+            {(() => {
+              const activeIdx = navItems.findIndex(
+                (item) => pathname === item.href || pathname.startsWith(item.href + "/")
+              );
+              if (activeIdx === -1) return null;
+              // Each item is h-9 (36px) with gap-0.5 (2px)
+              const top = activeIdx * (36 + 2);
+              return (
+                <>
+                  {/* Sliding bar */}
+                  <div
+                    className="sidebar-sliding-bar"
+                    style={{ top }}
+                  />
+                  {/* Sliding background */}
+                  <div
+                    className="sidebar-sliding-bg"
+                    style={{ top }}
+                  />
+                </>
+              );
+            })()}
+
             {navItems.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
 
@@ -119,16 +143,6 @@ function SidebarInner() {
                       : "text-text-muted hover:text-text-secondary"
                   }`}
                 >
-                  {/* Active indicator bar */}
-                  {isActive && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 rounded-r-full bg-accent shadow-[0_0_8px_rgba(52,211,153,0.4)]" />
-                  )}
-
-                  {/* Active background */}
-                  {isActive && (
-                    <div className="absolute inset-0 rounded-lg bg-accent/6" />
-                  )}
-
                   <span className="relative shrink-0 transition-transform duration-200 group-hover:scale-110">
                     {item.icon}
                   </span>
