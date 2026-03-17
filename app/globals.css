@@ -2174,3 +2174,88 @@ button, a, .app-card, .glass-card, .btn-press {
 .lcd-digit:has(+ .lcd-digit) {
   /* just keep uniform width */
 }
+
+/* ═══════════════════════════════════════════
+   Focus Mode — dims all chrome
+   ═══════════════════════════════════════════ */
+
+/* Sidebar */
+.focus-mode .sidebar-shell {
+  opacity: 0.05 !important;
+  transition: opacity 0.8s ease !important;
+}
+.focus-mode .sidebar-shell:hover {
+  opacity: 0.8 !important;
+}
+
+/* Heartbeat bar */
+.focus-mode .heartbeat-bar {
+  opacity: 0.05;
+  transition: opacity 0.8s ease;
+}
+.focus-mode .heartbeat-bar:hover {
+  opacity: 0.9;
+}
+
+/* Scroll progress */
+.focus-mode .scroll-progress-track {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Particles, shooting stars, cursor glow */
+.focus-mode canvas[style*="z-index: 1"],
+.focus-mode canvas[style*="z-index: 2"] {
+  opacity: 0 !important;
+  transition: opacity 1s ease !important;
+}
+
+/* Noise overlay */
+.focus-mode.noise-overlay::before {
+  opacity: 0 !important;
+  transition: opacity 0.5s ease !important;
+}
+
+/* Mesh gradients */
+.focus-mode .bg-mesh,
+.focus-mode .bg-mesh-extra {
+  opacity: 0.3;
+  transition: opacity 1s ease;
+}
+
+/* Focus badge */
+.focus-mode-badge {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(10, 10, 14, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(52, 211, 153, 0.1);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(52, 211, 153, 0.5);
+  letter-spacing: 1px;
+  animation: fadeIn 0.5s ease;
+}
+.focus-mode-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #34d399;
+  opacity: 0.6;
+  animation: heartbeatPulse 2s ease-in-out infinite;
+}
+.focus-mode-key {
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.25);
+}
