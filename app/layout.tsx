@@ -12,6 +12,7 @@ import HeartbeatBar from "@/components/heartbeat-bar";
 import ShootingStars from "@/components/shooting-stars";
 import ShortcutSheet from "@/components/shortcut-sheet";
 import BootSplash from "@/components/boot-splash";
+import MagneticField from "@/components/magnetic-field";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({
           <ParticleConstellation />
           <ShootingStars />
           <CursorGlow />
+          <MagneticField />
           <KonamiEasterEgg />
           <CommandPalette />
           <MatrixRain />
