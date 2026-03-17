@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
+import { playHeartbeat } from "@/lib/sounds";
 
 // ECG waveform shape — one heartbeat cycle
 // Returns y offset (0 = baseline) for a given t in [0, 1]
@@ -145,7 +146,7 @@ export default function HeartbeatBar() {
     <div className="heartbeat-bar" ref={containerRef}>
       <div
         className={`heartbeat-bar-inner ${expanded ? "heartbeat-expanded" : ""}`}
-        onClick={() => setExpanded((p) => !p)}
+        onClick={() => { playHeartbeat(); setExpanded((p) => !p); }}
       >
         {/* Minimized: just the heartbeat line + pulse dot */}
         <div className="heartbeat-row">
