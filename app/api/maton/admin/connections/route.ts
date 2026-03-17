@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { listConnections, deleteConnectionById } from "@/lib/maton";
+import { deleteConnectionById as deleteFromStore } from "@/lib/store";
 
 export async function GET() {
   try {
@@ -18,6 +19,7 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: "connectionId is required" }, { status: 400 });
     }
     await deleteConnectionById(connectionId);
+    await deleteFromStore(connectionId);
     return NextResponse.json({ success: true });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";

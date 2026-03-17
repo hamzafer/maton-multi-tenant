@@ -76,6 +76,22 @@ export async function deleteConnection(email: string, app: string): Promise<void
   await write(store);
 }
 
+export async function deleteConnectionById(connectionId: string): Promise<void> {
+  const store = await read();
+  for (const email of Object.keys(store)) {
+    for (const app of Object.keys(store[email].connections)) {
+      if (store[email].connections[app].connectionId === connectionId) {
+        delete store[email].connections[app];
+        if (Object.keys(store[email].connections).length === 0) {
+          delete store[email];
+        }
+        await write(store);
+        return;
+      }
+    }
+  }
+}
+
 export async function getAllUsers(): Promise<Store> {
   return read();
 }
