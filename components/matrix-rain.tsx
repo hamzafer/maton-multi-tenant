@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback, useState } from "react";
+import { playMatrixEnter } from "@/lib/sounds";
 
 // Characters: katakana + latin + digits + symbols for authentic Matrix feel
 const CHARS =
@@ -37,6 +38,7 @@ export default function MatrixRain() {
         if (!active) {
           setActive(true);
           setFading(false);
+          playMatrixEnter();
         }
       }
     }

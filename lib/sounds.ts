@@ -106,6 +106,32 @@ export function playConnect() {
   } catch {}
 }
 
+// Matrix activation — eerie descending digital warble
+export function playMatrixEnter() {
+  try {
+    const ctx = getCtx();
+    // Layered oscillators for a digital "entering the matrix" sound
+    const freqs = [880, 660, 440, 330, 220];
+    freqs.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sawtooth";
+      const t = ctx.currentTime + i * 0.06;
+      osc.frequency.setValueAtTime(freq, t);
+      osc.frequency.exponentialRampToValueAtTime(freq * 0.5, t + 0.3);
+      gain.gain.setValueAtTime(0.03, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+      const filter = ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(3000, t);
+      filter.frequency.exponentialRampToValueAtTime(200, t + 0.35);
+      osc.connect(filter).connect(gain).connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.4);
+    });
+  } catch {}
+}
+
 // Navigation whoosh — filtered noise sweep
 export function playNav() {
   try {
