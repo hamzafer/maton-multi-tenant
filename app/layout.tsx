@@ -16,6 +16,7 @@ import MagneticField from "@/components/magnetic-field";
 import ContextMenu from "@/components/context-menu";
 import DynamicFavicon from "@/components/dynamic-favicon";
 import Screensaver from "@/components/screensaver";
+import ClickShockwave from "@/components/click-shockwave";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -40,6 +41,7 @@ export default function RootLayout({
           <ConsoleArt />
           <ParticleConstellation />
           <ShootingStars />
+          <ClickShockwave />
           <CursorGlow />
           <MagneticField />
           <KonamiEasterEgg />
