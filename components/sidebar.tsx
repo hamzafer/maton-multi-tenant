@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
+import SnakeGame from "@/components/snake-game";
 
 interface NavItem {
   href: string;
@@ -55,6 +56,7 @@ function SidebarInner() {
   const email = searchParams.get("email");
   const [expanded, setExpanded] = useState(false);
   const [pinned, setPinned] = useState(false);
+  const [showGame, setShowGame] = useState(false);
   const isOpen = expanded || pinned;
 
   // Collapse on route change (mobile feel)
@@ -149,6 +151,26 @@ function SidebarInner() {
           <div className="px-2 pb-3 shrink-0">
             <div className="mx-1 mb-2 h-px bg-[rgba(255,255,255,0.05)]" />
 
+            {/* Snake game */}
+            <button
+              onClick={() => setShowGame(true)}
+              className="sidebar-item group flex items-center gap-3 h-9 w-full rounded-lg px-2.5 transition-all duration-200 text-text-muted hover:text-accent"
+            >
+              <span className="relative shrink-0 transition-transform duration-200 group-hover:scale-110">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.657-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z" />
+                </svg>
+              </span>
+              <span className={`sidebar-label relative text-[13px] font-medium whitespace-nowrap ${isOpen ? "" : "sidebar-label-hidden"}`}>
+                Snake
+              </span>
+              {!isOpen && (
+                <div className="sidebar-tooltip absolute left-full ml-2 px-2.5 py-1 rounded-md bg-[rgba(20,20,28,0.95)] border border-[rgba(255,255,255,0.08)] text-[11px] font-medium text-text-primary whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                  Snake Game
+                </div>
+              )}
+            </button>
+
             {/* Pin toggle */}
             <button
               onClick={() => setPinned((p) => !p)}
@@ -182,6 +204,9 @@ function SidebarInner() {
         className="shrink-0 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hidden lg:block"
         style={{ width: pinned ? 220 : 56 }}
       />
+
+      {/* Snake game modal */}
+      {showGame && <SnakeGame onClose={() => setShowGame(false)} />}
     </>
   );
 }
