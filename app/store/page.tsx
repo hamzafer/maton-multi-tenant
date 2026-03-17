@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import OrbitalSpinner from "@/components/orbital-spinner";
 import FlowField from "@/components/flow-field";
+import ScrambleText from "@/components/scramble-text";
 
 export default function StorePage() {
   const [storeData, setStoreData] = useState<string>("");
@@ -53,7 +54,7 @@ export default function StorePage() {
 
         <div className="animate-fade-up flex items-start justify-between mb-6">
           <div>
-            <h1 className="text-[20px] font-semibold tracking-tight text-text-primary">Raw Store</h1>
+            <h1 className="text-[20px] font-semibold tracking-tight text-text-primary"><ScrambleText text="Raw Store" scrambleOnMount /></h1>
             <p className="text-[13px] text-text-muted">Live JSON data &middot; auto-refreshes every 3s</p>
           </div>
           <div className="flex items-center gap-1 bg-surface-raised border border-border-subtle rounded-lg p-0.5">

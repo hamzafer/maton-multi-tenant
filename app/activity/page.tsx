@@ -5,6 +5,8 @@ import EmptyState from "@/components/empty-state";
 import { ActivitySkeleton } from "@/components/skeleton";
 import Reveal from "@/components/reveal";
 import NumberTicker from "@/components/number-ticker";
+import WaveDivider from "@/components/wave-divider";
+import ScrambleText from "@/components/scramble-text";
 
 interface ActivityEntry {
   id: string;
@@ -170,7 +172,7 @@ export default function ActivityPage() {
         <div className="animate-fade-up flex items-start justify-between mb-8">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h1 className="text-[22px] font-semibold tracking-tight text-text-primary">Activity</h1>
+              <h1 className="text-[22px] font-semibold tracking-tight text-text-primary"><ScrambleText text="Activity" scrambleOnMount /></h1>
               {entries.length > 0 && (
                 <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent/8 border border-accent/15">
                   <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />

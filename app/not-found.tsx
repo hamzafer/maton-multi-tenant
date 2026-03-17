@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ScrambleText from "@/components/scramble-text";
 
 function GlitchText({ text }: { text: string }) {
   const [display, setDisplay] = useState(text);
@@ -114,7 +115,7 @@ export default function NotFound() {
           <GlitchText text="404" />
         </h1>
 
-        <p className="text-[15px] text-text-secondary mb-2 font-medium">Connection not found</p>
+        <p className="text-[15px] text-text-secondary mb-2 font-medium"><ScrambleText text="Connection not found" scrambleOnMount speed={20} /></p>
         <p className="text-[12px] text-text-muted mb-8 font-mono max-w-xs text-center">
           The API endpoint you requested doesn&apos;t exist in our gateway.
         </p>
