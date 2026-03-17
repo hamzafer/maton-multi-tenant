@@ -845,3 +845,119 @@ html {
   );
   pointer-events: none;
 }
+
+/* ═══════════════════════════════════════════
+   JSON Syntax Viewer
+   ═══════════════════════════════════════════ */
+
+.json-viewer-root {
+  position: relative;
+}
+
+.json-viewer-scroll {
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.json-viewer-code {
+  padding: 16px 0;
+  min-width: min-content;
+}
+
+.json-line {
+  display: flex;
+  line-height: 1.75;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  transition: background 0.15s ease;
+  padding-right: 16px;
+}
+.json-line-hover {
+  background: rgba(52, 211, 153, 0.03);
+}
+
+.json-gutter {
+  display: inline-block;
+  text-align: right;
+  padding: 0 12px 0 16px;
+  color: rgba(255, 255, 255, 0.12);
+  user-select: none;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.json-line-hover .json-gutter {
+  color: rgba(52, 211, 153, 0.25);
+}
+
+.json-content {
+  white-space: pre;
+}
+
+/* Token colors — warm syntax palette */
+.json-key {
+  color: #34d399; /* emerald */
+}
+.json-string {
+  color: #fbbf24; /* amber */
+}
+.json-number {
+  color: #22d3ee; /* cyan */
+}
+.json-boolean {
+  color: #f472b6; /* pink */
+}
+.json-null {
+  color: #6b7280; /* gray */
+  font-style: italic;
+}
+.json-brace,
+.json-bracket {
+  color: rgba(255, 255, 255, 0.35);
+}
+.json-punct {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* Copy button */
+.json-copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+.json-copy-btn:hover {
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.json-copy-success {
+  color: #34d399 !important;
+  border-color: rgba(52, 211, 153, 0.2) !important;
+  background: rgba(52, 211, 153, 0.08) !important;
+}
+
+/* Footer */
+.json-viewer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.2);
+}
