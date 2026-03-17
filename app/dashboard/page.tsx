@@ -14,6 +14,7 @@ import EmptyState from "@/components/empty-state";
 import { DashboardSkeleton } from "@/components/skeleton";
 import OrbitalSpinner from "@/components/orbital-spinner";
 import { useConfetti } from "@/components/confetti";
+import { useToast } from "@/components/toast";
 
 // --- "Connect the APIs" mini game ---
 const GAME_NODES = [
@@ -306,6 +307,7 @@ function DashboardContent() {
   const [loadingApp, setLoadingApp] = useState<string | null>(null);
   const [error, setError] = useState("");
   const fireConfetti = useConfetti();
+  const { toast } = useToast();
 
   const fetchConnections = useCallback(async () => {
     try {
@@ -383,7 +385,9 @@ function DashboardContent() {
         if (data.oauthUrl) window.open(data.oauthUrl, "_blank");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to connect");
+      const msg = err instanceof Error ? err.message : "Failed to connect";
+      setError(msg);
+      toast(msg, "error");
     } finally {
       setLoadingApp(null);
     }
@@ -407,8 +411,11 @@ function DashboardContent() {
         return next;
       });
       if (selectedApp === app) setSelectedApp(null);
+      toast("Disconnected successfully", "info");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to disconnect");
+      const msg = err instanceof Error ? err.message : "Failed to disconnect";
+      setError(msg);
+      toast(msg, "error");
     }
   }
 
@@ -420,6 +427,7 @@ function DashboardContent() {
     setSelectedApp(app);
     setConnectingApp(null);
     fireConfetti();
+    toast(`${app.replace("google-", "").replace(/^\w/, c => c.toUpperCase())} connected!`, "success");
     // Also sync with server to update the store
     fetchConnections();
   }

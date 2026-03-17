@@ -4,6 +4,7 @@ import ParticleConstellation from "@/components/particles";
 import KonamiEasterEgg from "@/components/konami-easter-egg";
 import CursorGlow from "@/components/cursor-glow";
 import CommandPalette from "@/components/command-palette";
+import { ToastProvider } from "@/components/toast";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,14 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="noise-overlay flex min-h-screen">
-        <ParticleConstellation />
-        <CursorGlow />
-        <KonamiEasterEgg />
-        <CommandPalette />
-        <Sidebar />
-        <main className="flex-1 min-w-0">
-          {children}
-        </main>
+        <ToastProvider>
+          <ParticleConstellation />
+          <CursorGlow />
+          <KonamiEasterEgg />
+          <CommandPalette />
+          <Sidebar />
+          <main className="flex-1 min-w-0">
+            {children}
+          </main>
+        </ToastProvider>
       </body>
     </html>
   );
