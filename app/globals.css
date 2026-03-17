@@ -1152,3 +1152,138 @@ html {
   justify-content: center;
   gap: 6px;
 }
+
+/* ═══════════════════════════════════════════
+   Boot Splash Screen
+   ═══════════════════════════════════════════ */
+
+@keyframes bootScanExpand {
+  0% { transform: scaleY(0); opacity: 1; }
+  60% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+@keyframes bootGlitchIn {
+  0% { opacity: 0; transform: translateY(4px); filter: blur(8px); }
+  30% { opacity: 0.6; transform: translateY(-2px); filter: blur(2px); }
+  50% { opacity: 0.3; transform: translateY(1px); filter: blur(4px); }
+  70% { opacity: 0.8; transform: translateY(-1px); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes bootTextType {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bootProgressGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(52, 211, 153, 0.3); }
+  50% { box-shadow: 0 0 16px rgba(52, 211, 153, 0.5); }
+}
+
+.boot-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #030304;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+.boot-fadeout {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Scan line — horizontal bar that expands */
+.boot-scanline {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #34d399, transparent);
+  transform-origin: center;
+  animation: bootScanExpand 0.5s ease-out forwards;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.4), 0 0 60px rgba(52, 211, 153, 0.15);
+}
+
+/* Content container */
+.boot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo */
+.boot-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: bootGlitchIn 0.7s ease forwards;
+}
+.boot-logo-text {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: #34d399;
+  text-shadow: 0 0 20px rgba(52, 211, 153, 0.4), 0 0 60px rgba(52, 211, 153, 0.15);
+  animation: bootGlitchIn 0.7s ease 0.1s forwards;
+  opacity: 0;
+}
+
+/* Init text */
+.boot-init-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.boot-init-line {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(52, 211, 153, 0.5);
+  letter-spacing: 0.5px;
+  animation: bootTextType 0.4s ease forwards;
+}
+.boot-init-detail {
+  font-size: 10px;
+  color: rgba(52, 211, 153, 0.3);
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+/* Progress bar */
+.boot-progress-track {
+  width: 200px;
+  height: 2px;
+  background: rgba(52, 211, 153, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  animation: bootTextType 0.3s ease forwards;
+}
+.boot-progress-fill {
+  height: 100%;
+  background: #34d399;
+  border-radius: 2px;
+  transition: width 0.12s ease-out;
+  animation: bootProgressGlow 1s ease infinite;
+}
+
+/* Faint scan lines overlay */
+.boot-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.1) 3px,
+    rgba(0, 0, 0, 0.1) 6px
+  );
+  opacity: 0.5;
+}
