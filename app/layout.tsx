@@ -24,6 +24,7 @@ import TimeTheme from "@/components/time-theme";
 import PageTransition from "@/components/page-transition";
 import AchievementSystem from "@/components/achievements";
 import CreditsRoll from "@/components/credits-roll";
+import CustomCursor from "@/components/custom-cursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ export default function RootLayout({
           <ShootingStars />
           <ClickShockwave />
           <CursorGlow />
+          <CustomCursor />
           <MagneticField />
           <ScreenShake />
           <KonamiEasterEgg />
