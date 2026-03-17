@@ -200,6 +200,33 @@ export function playCrtKey() {
   } catch {}
 }
 
+// Shooting star whoosh — ethereal high-frequency sweep
+export function playStarWhoosh() {
+  try {
+    const ctx = getCtx();
+    // Breathy noise sweep
+    const bufferSize = ctx.sampleRate * 0.25;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      const env = Math.sin((i / bufferSize) * Math.PI); // bell curve envelope
+      data[i] = (Math.random() * 2 - 1) * env;
+    }
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    const bandpass = ctx.createBiquadFilter();
+    bandpass.type = "bandpass";
+    bandpass.frequency.setValueAtTime(6000, ctx.currentTime);
+    bandpass.frequency.exponentialRampToValueAtTime(1500, ctx.currentTime + 0.25);
+    bandpass.Q.setValueAtTime(1.5, ctx.currentTime);
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.008, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+    source.connect(bandpass).connect(gain).connect(ctx.destination);
+    source.start(ctx.currentTime);
+  } catch {}
+}
+
 // Matrix activation — eerie descending digital warble
 export function playMatrixEnter() {
   try {

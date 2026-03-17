@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { playStarWhoosh } from "@/lib/sounds";
 
 interface Star {
   x: number;
@@ -61,6 +62,14 @@ export default function ShootingStars() {
       const vx = Math.cos(angle) * speed * (edge >= 0.5 && edge < 0.8 ? -1 : 1);
       const vy = Math.sin(angle) * speed;
 
+      const brightness = 0.5 + Math.random() * 0.5;
+      const size = 1 + Math.random() * 1.5;
+
+      // Play whoosh for bright, large meteors
+      if (brightness > 0.75 && size > 1.5) {
+        playStarWhoosh();
+      }
+
       starsRef.current.push({
         x,
         y,
@@ -68,8 +77,8 @@ export default function ShootingStars() {
         vy,
         life: 0,
         maxLife: 40 + Math.random() * 60,
-        size: 1 + Math.random() * 1.5,
-        brightness: 0.5 + Math.random() * 0.5,
+        size,
+        brightness,
         trail: [],
       });
     }
