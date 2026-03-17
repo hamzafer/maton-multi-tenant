@@ -106,6 +106,57 @@ export function playConnect() {
   } catch {}
 }
 
+// CRT power on — retro CRT monitor hum + static burst
+export function playCrtOpen() {
+  try {
+    const ctx = getCtx();
+    // Static burst
+    const bufferSize = ctx.sampleRate * 0.12;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+    }
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.06, ctx.currentTime);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+    const hpf = ctx.createBiquadFilter();
+    hpf.type = "highpass";
+    hpf.frequency.setValueAtTime(3000, ctx.currentTime);
+    noise.connect(hpf).connect(noiseGain).connect(ctx.destination);
+    noise.start(ctx.currentTime);
+    // 60Hz hum
+    const hum = ctx.createOscillator();
+    const humGain = ctx.createGain();
+    hum.type = "sine";
+    hum.frequency.setValueAtTime(60, ctx.currentTime);
+    humGain.gain.setValueAtTime(0.04, ctx.currentTime);
+    humGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+    hum.connect(humGain).connect(ctx.destination);
+    hum.start(ctx.currentTime);
+    hum.stop(ctx.currentTime + 0.3);
+  } catch {}
+}
+
+// CRT keypress — mechanical clicky key sound
+export function playCrtKey() {
+  try {
+    const ctx = getCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "square";
+    osc.frequency.setValueAtTime(1800 + Math.random() * 400, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.03);
+    gain.gain.setValueAtTime(0.015, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.03);
+  } catch {}
+}
+
 // Matrix activation — eerie descending digital warble
 export function playMatrixEnter() {
   try {

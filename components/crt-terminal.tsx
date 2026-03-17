@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { playCrtOpen, playCrtKey } from "@/lib/sounds";
 
 interface Line {
   text: string;
@@ -168,6 +169,7 @@ export default function CrtTerminal() {
             // Boot sequence
             setBooting(true);
             setLines([]);
+            playCrtOpen();
             return true;
           }
           return false;
@@ -267,9 +269,13 @@ export default function CrtTerminal() {
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter") {
+      playCrtKey();
       execute(input);
       setInput("");
-    } else if (e.key === "ArrowUp") {
+    } else if (e.key.length === 1) {
+      playCrtKey();
+    }
+    if (e.key === "ArrowUp") {
       e.preventDefault();
       if (history.length > 0) {
         const idx = historyIdx === -1 ? history.length - 1 : Math.max(0, historyIdx - 1);
