@@ -30,6 +30,11 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     const id = ++idCounter;
     setToasts((prev) => [...prev, { id, message, type, exiting: false }]);
 
+    // Dispatch screen effect event
+    if (type === "error" || type === "success") {
+      window.dispatchEvent(new CustomEvent("screen-effect", { detail: { type } }));
+    }
+
     // Start exit animation
     setTimeout(() => {
       setToasts((prev) => prev.map((t) => t.id === id ? { ...t, exiting: true } : t));
