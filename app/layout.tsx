@@ -10,6 +10,7 @@ import MatrixRain from "@/components/matrix-rain";
 import CrtTerminal from "@/components/crt-terminal";
 import HeartbeatBar from "@/components/heartbeat-bar";
 import ShootingStars from "@/components/shooting-stars";
+import ShortcutSheet from "@/components/shortcut-sheet";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
           <CommandPalette />
           <MatrixRain />
           <CrtTerminal />
+          <ShortcutSheet />
           <Sidebar />
           <main className="flex-1 min-w-0 pb-14">
             {children}
