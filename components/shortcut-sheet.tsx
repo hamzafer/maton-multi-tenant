@@ -44,6 +44,7 @@ const CATEGORIES: Category[] = [
       { keys: ["🎵"], label: "Ambient Toggle", description: "Generative drone music in sidebar" },
       { keys: ["Near"], label: "Magnetic Buttons", description: "Buttons pull toward your cursor" },
       { keys: ["Right", "Click"], label: "Context Menu", description: "Custom menu with quick actions" },
+      { keys: ["Idle"], label: "Screensaver", description: "Lissajous curves after 45s idle" },
     ],
   },
   {
