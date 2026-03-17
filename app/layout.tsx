@@ -11,6 +11,7 @@ import CrtTerminal from "@/components/crt-terminal";
 import HeartbeatBar from "@/components/heartbeat-bar";
 import ShootingStars from "@/components/shooting-stars";
 import ShortcutSheet from "@/components/shortcut-sheet";
+import BootSplash from "@/components/boot-splash";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="noise-overlay flex min-h-screen">
         <ToastProvider>
+          <BootSplash />
           <ConsoleArt />
           <ParticleConstellation />
           <ShootingStars />
